@@ -43,7 +43,7 @@
   border-radius: var(--border-radius);
 }
 
-.news.Title {
+.newsTitle {
   font-size: 1.5rem;
 }
 
@@ -53,17 +53,10 @@
   bottom: -40px;
 }
 
-@media (max-width: 1000px) {
-  .news {
-    width: calc(100% - 160px);
-  }
-}
-
 @media (max-width: 640px) {
   .top {
     padding: 120px 16px;
   }
-
   .title {
     font-size: 2rem;
     text-align: left;

@@ -21,7 +21,7 @@
     right: 0;
     bottom: 0;
     background-color: var(--color-bg-painted);
-    color: var(--color-text-painted);
+    color: var(--color-text-unpainted);
     padding: 24px 16px;
   }
 

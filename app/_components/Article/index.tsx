@@ -6,7 +6,7 @@ import Category from "../Category";
 import styles from "./index.module.css";
 
 type Props = {
-  data: string;
+  data: News;
 };
 
 export default function Article({ data }: Props) {

@@ -10,10 +10,11 @@ export default function Menu() {
   const [isOpen, setOpen] = useState<boolean>(false);
   const open = () => setOpen(true);
   const close = () => setOpen(false);
+
   return (
     <div>
       <nav className={cx(styles.nav, isOpen && styles.open)}>
-        <ul className={styles.items}>
+        <ul className={styles.items} onClick={close}>
           <li>
             <Link href="/news">ニュース</Link>
           </li>

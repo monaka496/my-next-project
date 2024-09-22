@@ -1,21 +1,18 @@
 import Hero from "@/app/_components/Hero";
 import Sheet from "@/app/_components/Sheet";
-import { title } from "process";
 
 export const metadata = {
-  title: "ニュース",
+  title: "お問い合わせ",
 };
 
 type Props = {
   children: React.ReactNode;
 };
 
-export const revalidate = 60;
-
-export default function NewsLayout({ children }: Props) {
+export default function RootLayout({ children }: Props) {
   return (
     <>
-      <Hero title="News" sub="ニュース" />
+      <Hero title="Contact" sub="お問い合わせ" />
       <Sheet>{children}</Sheet>
     </>
   );
