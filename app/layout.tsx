@@ -5,7 +5,7 @@ import Header from "./_components/Header";
 import Footer from "./_components/Footer";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://monaka496.static.jp/"),
+  metadataBase: new URL("https://monaka496.vercel.app/"),
   title: {
     template: "%s | シンプルなコーポレートサイト",
     default: "シンプルなコーポレートサイト",
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     images: ["/ogp.png"],
   },
   alternates: {
-    canonical: "https://monaka496.static.jp/",
+    canonical: "https://monaka496.vercel.app/",
   },
 };
 
