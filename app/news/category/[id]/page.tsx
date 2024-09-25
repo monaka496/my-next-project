@@ -5,6 +5,8 @@ import Pagenation from "@/app/_components/Pagenation";
 import Category from "@/app/_components/Category";
 import { NEWS_LIST_LIMIT } from "@/app/_constants";
 
+export const runtime = "edge";
+
 type Props = {
   params: {
     id: string;

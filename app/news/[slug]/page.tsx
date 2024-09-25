@@ -6,6 +6,7 @@ import ButtonLink from "@/app/_components/ButtonLink";
 import styles from "./page.module.css";
 
 export const revalidate = 60;
+export const runtime = "edge";
 
 type Props = {
   params: {

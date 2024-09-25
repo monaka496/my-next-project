@@ -3,6 +3,8 @@ import NewsList from "@/app/_components/NewsList";
 import { NEWS_LIST_LIMIT } from "@/app/_constants";
 import SearchField from "@/app/_components/SearchField";
 
+export const runtime = "edge";
+
 type Props = {
   searchParams: {
     q?: string;
