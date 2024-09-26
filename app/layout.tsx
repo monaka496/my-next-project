@@ -5,21 +5,16 @@ import Header from "./_components/Header";
 import Footer from "./_components/Footer";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://monaka496.vercel.app/"),
+  metadataBase: new URL("https://monaka496.com"),
   title: {
-    template: "%s | シンプルなコーポレートサイト",
-    default: "シンプルなコーポレートサイト",
+    template: "%s | monaka",
+    default: "monaka",
   },
-  description:
-    "「Next.js＋ヘッドレスCMSではじめる！ かんたん・モダンWebサイト制作入門」で作成されるサイトです。",
+  description: "日々の学びをアウトプットするブログです。",
   openGraph: {
-    title: "シンプルなコーポレートサイト",
-    description:
-      "「Next.js＋ヘッドレスCMSではじめる！ かんたん・モダンWebサイト制作入門」で作成されるサイトです。",
+    title: "monaka",
+    description: "日々の学びをアウトプットするブログです。",
     images: ["/ogp.png"],
-  },
-  alternates: {
-    canonical: "https://monaka496.vercel.app/",
   },
 };
 
@@ -29,7 +24,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="ja">
       <body>
         <Header />
         {children}

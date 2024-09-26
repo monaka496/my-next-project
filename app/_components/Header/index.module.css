@@ -1,6 +1,6 @@
 .header {
   position: absolute;
-  padding: 16px 24px 8px;
+  padding: 16px;
   z-index: 1000;
   display: flex;
   align-items: center;
@@ -10,6 +10,9 @@
 
 .logoLink {
   display: flex;
+  color: #fff;
+  font-weight: 900;
+  font-variant-caps: unicase;
 }
 
 .logo {
@@ -19,6 +22,6 @@
 
 @media (max-width: 640px) {
   .header {
-    padding: 24px 16px 8px;
+    padding: 16px;
   }
 }

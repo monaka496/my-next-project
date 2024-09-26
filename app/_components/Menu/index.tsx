@@ -14,15 +14,21 @@ export default function Menu() {
   return (
     <div>
       <nav className={cx(styles.nav, isOpen && styles.open)}>
-        <ul className={styles.items} onClick={close}>
+        <ul className={styles.items}>
           <li>
-            <Link href="/news">ニュース</Link>
+            <Link href="/news" onClick={close}>
+              ニュース
+            </Link>
           </li>
           <li>
-            <Link href="/members">メンバー</Link>
+            <Link href="/members" onClick={close}>
+              メンバー
+            </Link>
           </li>
           <li>
-            <Link href="/contact">お問い合わせ</Link>
+            <Link href="/contact" onClick={close}>
+              お問い合わせ
+            </Link>
           </li>
         </ul>
         <button className={cx(styles.button, styles.close)} onClick={close}>
