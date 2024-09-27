@@ -48,9 +48,7 @@
 }
 
 .newsLink {
-  position: absolute;
-  right: -40px;
-  bottom: -40px;
+  margin-top: 2rem;
 }
 
 @media (max-width: 640px) {
@@ -83,7 +81,7 @@
 
   .news {
     width: calc(100% - 32px);
-    padding: 16px 24px;
+    padding: 16px 0px;
   }
 
   .newsLink {

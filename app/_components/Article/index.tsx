@@ -12,6 +12,15 @@ type Props = {
 export default function Article({ data }: Props) {
   return (
     <main>
+      {data.thumbnail && (
+        <Image
+          src={data.thumbnail.url}
+          alt=""
+          className={styles.thumbnail}
+          width={data.thumbnail.width}
+          height={data.thumbnail.height}
+        />
+      )}
       <h1 className={styles.title}>{data.title}</h1>
       <p className={styles.descrition}>{data.description}</p>
       <div className={styles.meta}>
@@ -23,15 +32,6 @@ export default function Article({ data }: Props) {
         </Link>
         <Date date={data.publishedAt ?? data.createdAt} />
       </div>
-      {data.thumbnail && (
-        <Image
-          src={data.thumbnail.url}
-          alt=""
-          className={styles.thumbnail}
-          width={data.thumbnail.width}
-          height={data.thumbnail.height}
-        />
-      )}
       <div
         className={styles.content}
         dangerouslySetInnerHTML={{

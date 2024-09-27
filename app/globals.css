@@ -3,7 +3,7 @@
     "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro",
     "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
   --color-text-main: #333;
-  --color-text-sub: #999;
+  --color-text-sub: #616269;
   --color-text-unpainted: #fff;
   --color-text-error: #f33;
   --color-bg-main: #fff;
@@ -16,6 +16,7 @@
   --color-current: #eee;
   --color-button-primary: #333;
   --border-radius: 4px;
+  --color-primary: #563bff;
 }
 
 * {

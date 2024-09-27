@@ -1,6 +1,6 @@
 .items {
   display: flex;
-  color: #fff;
+  color: var(--color-text-sub);
   gap: 40px;
 }
 
@@ -27,6 +27,7 @@
 
   .items {
     flex-direction: column;
+    color: #fff;
     gap: 24px;
   }
 
