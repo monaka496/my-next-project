@@ -1,13 +1,12 @@
 import styles from "./page.module.css";
-import Image from "next/image";
 import { getNewsList } from "./_libs/microcms";
-import { TOP_NEWS_LIMIT } from "./_constants";
+import { TOP_NEWS_LIMIT, NEWS_LIST_LIMIT } from "./_constants";
 import NewsList from "./_components/NewsList";
-import ButtonLink from "@/app/_components/ButtonLink";
 import Hero from "@/app/_components/Hero";
+import Pagenation from "./_components/Pagenation";
 
 export default async function Home() {
-  const data = await getNewsList({
+  const { contents: news, totalCount } = await getNewsList({
     limit: TOP_NEWS_LIMIT,
   });
 
@@ -15,10 +14,8 @@ export default async function Home() {
     <>
       <Hero />
       <section className={styles.news}>
-        <NewsList news={data.contents} />
-        <div className={styles.newsLink}>
-          <ButtonLink href="/news">もっと見る</ButtonLink>
-        </div>
+        <NewsList news={news} />
+        <Pagenation totalCount={totalCount} />
       </section>
     </>
   );

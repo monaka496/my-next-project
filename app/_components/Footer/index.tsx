@@ -15,6 +15,9 @@ export default function Footer() {
           <li className={styles.item}>
             <Link href="/contact">お問い合わせ</Link>
           </li>
+          <li>
+            <Link href="/privacy">プライバシーポリシー</Link>
+          </li>
         </ul>
       </nav>
       <p className={styles.cr}>© monaka. ALL Rights Reserved 2024</p>

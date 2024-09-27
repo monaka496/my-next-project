@@ -30,6 +30,11 @@ export default function Menu() {
               お問い合わせ
             </Link>
           </li>
+          <li>
+            <Link href="/privacy" onClick={close}>
+              プライバシーポリシー
+            </Link>
+          </li>
         </ul>
         <button className={cx(styles.button, styles.close)} onClick={close}>
           <Image
