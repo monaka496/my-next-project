@@ -3,7 +3,7 @@ import Sheet from "@/app/_components/Sheet";
 import { title } from "process";
 
 export const metadata = {
-  title: "ニュース",
+  title: "新着記事",
 };
 
 type Props = {

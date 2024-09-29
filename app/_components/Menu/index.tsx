@@ -17,7 +17,7 @@ export default function Menu() {
         <ul className={styles.items}>
           <li>
             <Link href="/blog" onClick={close}>
-              ニュース
+              新着記事
             </Link>
           </li>
           <li>
