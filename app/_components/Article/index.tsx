@@ -1,10 +1,9 @@
-// pages/[slug].tsx
 import Link from "next/link";
 import Image from "next/image";
 import type { News } from "@/app/_libs/microcms";
 import Date from "../Date";
 import Category from "../Category";
-import TableOfContents from "../ToC"; // TableOfContentsコンポーネントをインポート
+import TableOfContents from "../ToC"; // ToCコンポーネントをインポート
 import styles from "./index.module.css";
 import * as cheerio from "cheerio";
 
