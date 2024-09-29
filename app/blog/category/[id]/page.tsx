@@ -29,7 +29,7 @@ export default async function Page({ params }: Props) {
       <NewsList news={news} />;
       <Pagenation
         totalCount={totalCount}
-        basePath={`/news/caegory/${category.id}`}
+        basePath={`/blog/category/${category.id}`}
       />
     </>
   );
