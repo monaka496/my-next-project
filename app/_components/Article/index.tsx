@@ -1,3 +1,5 @@
+// Article.tsx
+
 import Link from "next/link";
 import Image from "next/image";
 import type { News } from "@/app/_libs/microcms";
@@ -6,12 +8,16 @@ import Category from "../Category";
 import TableOfContents from "../ToC"; // ToCコンポーネントをインポート
 import styles from "./index.module.css";
 import * as cheerio from "cheerio";
+import Recommend from "@/app/_components/Recommend";
+import {
+  getBlogsByCategory, // ここで関数をインポート
+} from "@/app/_libs/microcms";
 
 type Props = {
   data: News;
 };
 
-export default function Article({ data }: Props) {
+export default async function Article({ data }: Props) {
   // data.contentがundefinedまたは空の場合のハンドリング
   if (!data || !data.content) {
     return <div>記事が見つかりませんでした。</div>; // エラーハンドリング
@@ -33,6 +39,15 @@ export default function Article({ data }: Props) {
     }
 
     toc.push({ id, text });
+  });
+
+  // カテゴリーのコンテンツIDを取得
+  const categoryId = data.category.id;
+
+  // 同じカテゴリーのブログを取得
+  const { contents: relatedContents } = await getBlogsByCategory({
+    limit: 3, // 表示する関連記事の数
+    filters: `category[equals]${categoryId}[and]id[not_equals]${data.id}`,
   });
 
   return (
@@ -66,6 +81,12 @@ export default function Article({ data }: Props) {
           __html: data.content,
         }}
       />
+
+      {/* 関連記事を表示 */}
+      <div>
+        <h2 className={styles.recommendh2}>関連記事</h2>
+        <Recommend contents={relatedContents} title={data.category.name} />
+      </div>
     </main>
   );
 }

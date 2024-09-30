@@ -11,9 +11,13 @@ interface TableOfContentsProps {
 }
 
 const TableOfContents: React.FC<TableOfContentsProps> = ({ toc }) => {
+  if (toc.length === 0) {
+    return null;
+  }
+
   return (
     <div className={styles.toc}>
-      {toc.length > 0 && <h2 className={styles.h2}>目次</h2>}
+      <h2 className={styles.h2}>目次</h2>
       <ul>
         {toc.map((item) => (
           <li className={styles.tocli} key={item.id}>

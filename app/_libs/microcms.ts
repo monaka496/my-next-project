@@ -84,3 +84,24 @@ export const getAllCategoryList = async () => {
 
   return listData;
 };
+
+// 型定義を追加
+type GetBlogsByCategoryParams = {
+  limit: number; // limit は数値型
+  filters?: string; // filters はオプショナルな文字列型
+};
+
+export const getBlogsByCategory = async ({
+  limit,
+  filters,
+}: GetBlogsByCategoryParams) => {
+  const response = await client.get({
+    endpoint: "news",
+    queries: {
+      limit: limit,
+      filters: filters,
+    },
+  });
+
+  return response;
+};
