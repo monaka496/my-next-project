@@ -1,56 +1,56 @@
 .recommendContainer {
   display: grid;
-  gap: 1rem; /* 間隔を調整 */
+  gap: 1rem;
 }
 
 .cardContainer {
-  border-radius: 0.5rem; /* 角を丸める */
-  background-color: white; /* 背景色 */
+  border-radius: 0.5rem;
+  background-color: white;
 }
 
 .recommendItems {
   display: grid;
-  gap: 1rem; /* 要素間のギャップを大きめに */
+  gap: 1rem;
 }
 
 .recommendItem {
-  display: block; /* 各アイテムをブロック要素に */
+  display: block;
 }
 
 .recommendLink {
-  display: block; /* リンクをブロック表示 */
+  display: block;
 }
 
 .thumbnail {
-  width: 100%; /* 幅を100%にしてレスポンシブ対応 */
-  height: auto; /* 高さを自動調整 */
-  border-radius: 0.5rem; /* 角を丸める */
-  object-fit: cover; /* 画像が枠に収まるように */
+  width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+  object-fit: cover;
 }
 
 .title {
-  margin-bottom: 1.5rem; /* タイトルの下マージンを調整 */
-  font-size: 1.25rem; /* タイトルサイズを少し大きく */
-  font-weight: 600; /* 太字に */
+  margin-bottom: 1.5rem;
+  font-size: 1.25rem;
+  font-weight: 600;
 }
 
 .titleContainer {
-  display: block; /* タイトルをブロック表示 */
+  display: block;
 }
 
 .titleText {
-  font-size: 18px; /* タイトルテキストのサイズ */
-  transition: color 0.3s; /* 色の遷移 */
+  font-size: 18px;
+  transition: color 0.3s;
 }
 
 @media (min-width: 768px) {
   .recommendItems {
-    grid-template-columns: repeat(2, 1fr); /* PCでは2カラム */
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (max-width: 767px) {
   .recommendItems {
-    grid-template-columns: 1fr; /* スマホでは1カラム */
+    grid-template-columns: 1fr;
   }
 }

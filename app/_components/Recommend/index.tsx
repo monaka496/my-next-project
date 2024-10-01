@@ -2,7 +2,7 @@ import type { News } from "@/app/_libs/microcms";
 import Image from "next/image";
 import Link from "next/link";
 import styles from "./index.module.css";
-import Date from "@/app/_components/Date"; // Dateコンポーネントをインポート
+import Date from "@/app/_components/Date";
 import { RECOMMEND_LIST_LIMIT } from "@/app/_constants/";
 
 type Props = {
@@ -15,7 +15,6 @@ export default function Recommend({ contents, title }: Props) {
     return <div>記事がありません</div>;
   }
 
-  // 表示する記事の数を制限
   const limitedContents = contents.slice(0, RECOMMEND_LIST_LIMIT);
 
   return (
@@ -28,8 +27,8 @@ export default function Recommend({ contents, title }: Props) {
                 <Image
                   src={item.thumbnail?.url || "/no-image.png"}
                   alt={item.title}
-                  width={1200} // 元画像の幅
-                  height={630} // 元画像の高さ
+                  width={1200}
+                  height={630}
                   className={styles.thumbnail}
                   priority
                 />
