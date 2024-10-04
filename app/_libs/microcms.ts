@@ -9,12 +9,17 @@ export type Category = {
   name: string;
 } & MicroCMSListContent;
 
+export type Tag = {
+  name: string;
+} & MicroCMSListContent;
+
 export type News = {
   title: string;
   description: string;
   content: string;
   thumbnail?: MicroCMSImage;
   category: Category;
+  tag: Tag[];
 } & MicroCMSListContent;
 
 if (!process.env.MICROCMS_SERVICE_DOMAIN) {
@@ -103,4 +108,26 @@ export const getBlogsByCategory = async ({
   });
 
   return response;
+};
+
+// Tag
+export const getTagDetail = async (
+  contentId: string,
+  queries?: MicroCMSQueries
+) => {
+  const detailData = await client.getListDetail<Tag>({
+    endpoint: "tag",
+    contentId,
+    queries,
+  });
+
+  return detailData;
+};
+
+export const getAllTagList = async () => {
+  const listData = await client.getAllContents<Tag>({
+    endpoint: "tag",
+  });
+
+  return listData;
 };

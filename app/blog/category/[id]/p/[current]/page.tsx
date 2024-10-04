@@ -14,7 +14,7 @@ type Props = {
 };
 
 export default async function Page({ params }: Props) {
-  const current = parseInt(params.current, 10);
+  const current = parseInt(params.current as string, 10);
 
   if (Number.isNaN(current) || current < 1) {
     notFound();
@@ -35,7 +35,11 @@ export default async function Page({ params }: Props) {
   return (
     <>
       <NewsList news={news} />
-      <Pagenation totalCount={totalCount} current={current} />
+      <Pagenation
+        totalCount={totalCount}
+        current={current}
+        basePath={`/blog/category/${category.id}`}
+      />
     </>
   );
 }

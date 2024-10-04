@@ -1,0 +1,17 @@
+.tag {
+  color: #331cbf;
+  display: inline-flex; /* インライン要素のように表示し、アイコンとテキストを横並びにする */
+  align-items: center; /* 垂直方向に中央揃え */
+  font-size: 16px;
+  margin-right: 20px;
+}
+
+.tag:before {
+  background: url(/icon_tag.svg) 50% no-repeat;
+  background-size: contain;
+  content: "";
+  display: inline-block;
+  height: 16px;
+  width: 16px;
+  margin-right: 8px; /* アイコンとテキストの間に余白を作る */
+}

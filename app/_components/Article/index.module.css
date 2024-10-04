@@ -17,11 +17,23 @@
   align-items: center;
   flex-shrink: 1;
   gap: 24px;
-  margin-bottom: 20px;
+}
+
+.date {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-shrink: 1;
+  gap: 24px;
+  padding: 10px 0 20px;
 }
 
 .categoryLink {
   display: flex;
+}
+
+.tagLink {
+  display: inline-flex;
 }
 
 .thumbnail {
@@ -175,7 +187,6 @@
   .meta {
     display: flex;
     align-items: center;
-    margin-bottom: 20px;
     font-size: 0.9rem;
   }
 

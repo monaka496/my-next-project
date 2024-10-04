@@ -17,7 +17,7 @@ export default function Footer() {
           </li>
         </ul>
       </nav>
-      <p className={styles.cr}>© monaka. ALL Rights Reserved</p>
+      <p className={styles.cr}>© monaka ALL Rights Reserved</p>
     </footer>
   );
 }
