@@ -12,7 +12,7 @@ export default function Menu() {
   const close = () => setOpen(false);
 
   return (
-    <div>
+    <div className={styles.menu}>
       <nav className={cx(styles.nav, isOpen && styles.open)}>
         <ul className={styles.items}>
           <li>

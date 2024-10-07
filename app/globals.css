@@ -79,3 +79,30 @@ table td {
   vertical-align: middle;
   border: 1px solid #dee2e6;
 }
+
+/* サイドメニュー */
+.layout {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1160px; /* コンテナの最大幅を指定 */
+  margin: 0 auto; /* コンテンツを中央揃え */
+}
+
+.sidemenu {
+  width: 300px; /* サイドメニューの幅 */
+  margin: 30px auto;
+}
+
+.content {
+  flex-grow: 1; /* メインコンテンツは残りのスペースを埋める */
+}
+
+@media (max-width: 768px) {
+  .layout {
+    flex-direction: column;
+  }
+
+  .sidemenu {
+    width: calc(100% - 32px);
+  }
+}

@@ -19,7 +19,6 @@ export default async function Page({ searchParams }: Props) {
 
   return (
     <>
-      <SearchField />
       <NewsList news={news} />
     </>
   );

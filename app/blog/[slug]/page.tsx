@@ -23,7 +23,13 @@ export async function generateMetadata({
 }: Props): Promise<Metadata> {
   const data = await getNewsDetail(params.slug, {
     draftKey: searchParams.dk,
+  }).catch(() => {
+    notFound();
   });
+
+  if (!data) {
+    return {};
+  }
 
   return {
     title: data.title,
@@ -39,7 +45,13 @@ export async function generateMetadata({
 export default async function Page({ params, searchParams }: Props) {
   const data = await getNewsDetail(params.slug, {
     draftKey: searchParams.dk,
-  }).catch(notFound);
+  }).catch(() => {
+    notFound();
+  });
+
+  if (!data) {
+    return notFound();
+  }
 
   return (
     <>

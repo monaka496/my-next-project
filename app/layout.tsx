@@ -4,6 +4,7 @@ import { GoogleTagManager } from "@next/third-parties/google";
 import type { Metadata } from "next";
 import Header from "./_components/Header";
 import Footer from "./_components/Footer";
+import SideMenu from "./_components/SideMenu";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://monaka496.com"),
@@ -28,7 +29,12 @@ export default function RootLayout({
     <html lang="ja">
       <body>
         <Header />
-        {children}
+        <div className="layout">
+          <main className="content">{children}</main>
+          <aside className="sidemenu">
+            <SideMenu />
+          </aside>
+        </div>
         <Footer />
       </body>
       <GoogleTagManager gtmId="GTM-PB3JSF3G" />

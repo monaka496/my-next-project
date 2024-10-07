@@ -1,3 +1,7 @@
+.menu {
+  padding: 8px 0;
+}
+
 .items {
   display: flex;
   color: var(--color-text-sub);
@@ -9,6 +13,10 @@
 }
 
 @media (max-width: 640px) {
+  .menu {
+    padding: 0;
+  }
+
   .nav {
     display: none;
   }

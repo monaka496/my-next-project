@@ -12,7 +12,6 @@ export default async function Home() {
 
   return (
     <>
-      <Hero />
       <section className={styles.news}>
         <NewsList news={news} />
         <Pagenation totalCount={totalCount} />
