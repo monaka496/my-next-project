@@ -48,7 +48,7 @@
 
 .news {
   background-color: #fff;
-  width: 820px;
+  width: 800px;
   margin: 0 auto;
   padding: 24px 0px;
   border-radius: var(--border-radius);
@@ -104,14 +104,5 @@
     right: auto;
     bottom: auto;
     margin-top: 16px;
-  }
-}
-
-@media (min-width: 1160px) {
-  .container {
-    display: flex;
-    justify-content: space-between;
-    margin: 20px auto 0;
-    width: 1160px; /* 固定幅1160px */
   }
 }

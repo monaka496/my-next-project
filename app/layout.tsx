@@ -5,6 +5,12 @@ import type { Metadata } from "next";
 import Header from "./_components/Header";
 import Footer from "./_components/Footer";
 import SideMenu from "./_components/SideMenu";
+import {
+  getAllCategoryList,
+  getAllTagList,
+  type Category,
+  type Tag,
+} from "./_libs/microcms";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://monaka496.com"),
@@ -20,11 +26,20 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+// カテゴリ・タグリスト
+async function getData() {
+  const categories = await getAllCategoryList(); // カテゴリデータを取得
+  const tags = await getAllTagList(); // タグデータを取得
+  return { categories, tags };
+}
+
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const { categories, tags } = await getData(); // カテゴリ・タグデータを取得
+
   return (
     <html lang="ja">
       <body>
@@ -32,7 +47,7 @@ export default function RootLayout({
         <div className="layout">
           <main className="content">{children}</main>
           <aside className="sidemenu">
-            <SideMenu />
+            <SideMenu categories={categories} tags={tags} />
           </aside>
         </div>
         <Footer />

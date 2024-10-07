@@ -1,0 +1,40 @@
+.sidetitle {
+  background-color: #eee;
+  border-radius: 5px;
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  padding: 6px 10px;
+}
+.categorylist {
+  border-bottom: 1px solid #eee;
+}
+.categorylink {
+  display: block;
+  padding: 10px;
+}
+.tagContainer {
+  padding: 0 10px;
+}
+.taglist {
+  display: inline-block;
+  margin-right: 16px;
+  padding: 4px 0;
+}
+.taglink {
+  font-size: 16px;
+  padding-left: 18px;
+  position: relative;
+}
+.taglink::before {
+  background: url(/icon_tag_side.svg) 50% no-repeat;
+  background-size: contain;
+  content: "";
+  display: inline-block;
+  height: 14px;
+  left: 0;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 14px;
+}

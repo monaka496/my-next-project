@@ -15,7 +15,7 @@
 .container {
   position: relative;
   background-color: #fff;
-  width: 820px;
+  width: 800px;
   margin: 0 auto;
   padding: 160px 80px;
   border-radius: var(--border-radius);
