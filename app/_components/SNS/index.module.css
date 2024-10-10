@@ -1,0 +1,67 @@
+.share {
+  background-color: #f7f7fc;
+  border-radius: 5px;
+  margin-top: 40px;
+  padding: 24px;
+}
+.sharetitle {
+  color: var(--color-text-sub);
+  font-size: 14px;
+  font-weight: 700;
+  padding-bottom: 16px;
+  text-align: center;
+}
+.shareul {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.sharebutton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 12px;
+  width: 200px;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+.sharebutton:hover {
+  background-color: #f0f0f0;
+}
+.sharex {
+  border: 1px solid #0f1419;
+  color: #0f1419;
+}
+.sharefb {
+  border: 1px solid #1877f2;
+  color: #1877f2;
+}
+.sharehatena {
+  border: 1px solid #00a4de;
+  color: #00a4de;
+}
+.icon {
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .shareul {
+    flex-direction: column;
+    gap: 0px;
+  }
+
+  .sharebutton {
+    font-size: 12px;
+    margin-bottom: 16px;
+    margin-left: 0;
+    width: 100%;
+  }
+}

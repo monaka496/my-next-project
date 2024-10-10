@@ -9,6 +9,7 @@ import * as cheerio from "cheerio";
 import Recommend from "@/app/_components/Recommend";
 import { getBlogsByCategory } from "@/app/_libs/microcms";
 import Tag from "@/app/_components/Tag";
+import SNS from "../SNS";
 import { notFound } from "next/navigation";
 
 type Props = {
@@ -92,6 +93,9 @@ export default async function Article({ data }: Props) {
           __html: data.content,
         }}
       />
+
+      {/* SNSを表示 */}
+      <SNS id={data.id} title={data.title} />
 
       {/* 関連記事を表示 */}
       <div>
