@@ -10,6 +10,7 @@ import Recommend from "@/app/_components/Recommend";
 import { getBlogsByCategory } from "@/app/_libs/microcms";
 import Tag from "@/app/_components/Tag";
 import SNS from "../SNS";
+import Breadcrumb from "../Breadcrumb";
 import { notFound } from "next/navigation";
 
 type Props = {
@@ -57,6 +58,7 @@ export default async function Article({ data }: Props) {
           height={data.thumbnail.height}
         />
       )}
+      <Breadcrumb category={data.category} />
       <h1 className={styles.title}>{data.title}</h1>
       <div className={styles.meta}>
         <Link

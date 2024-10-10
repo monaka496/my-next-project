@@ -1,0 +1,16 @@
+.breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  padding-top: 10px;
+}
+.breadcrumbitem {
+  display: flex;
+  flex-wrap: wrap;
+}
+.breadcrumbitem:not(:last-child)::after {
+  content: ">";
+  margin: 0 10px;
+}
+.breadcrumblink {
+  color: #331cbf;
+}

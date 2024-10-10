@@ -39,7 +39,6 @@
 .thumbnail {
   width: 100%;
   height: auto;
-  margin-bottom: 10px;
 }
 
 .content *:first-child {
@@ -188,12 +187,12 @@
     display: flex;
     align-items: center;
     font-size: 0.9rem;
+    margin-top: 5px;
   }
 
   .thumbnail {
     width: 100%;
     height: auto;
-    margin-bottom: 10px;
   }
 
   .content {
