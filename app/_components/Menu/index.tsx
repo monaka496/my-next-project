@@ -21,13 +21,22 @@ export default function Menu() {
             </Link>
           </li>
           <li>
-            <Link href="/contact" onClick={close}>
+            <Link href="/privacy" onClick={close}>
+              プライバシーポリシー
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/contact"
+              className={styles.feedbuttonsecondary}
+              onClick={close}
+            >
               お問い合わせ
             </Link>
           </li>
           <li>
-            <Link href="/privacy" onClick={close}>
-              プライバシーポリシー
+            <Link href="/feed.xml" className={styles.feedbuttonprimary}>
+              RSSで購読する
             </Link>
           </li>
         </ul>
