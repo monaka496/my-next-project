@@ -10,10 +10,13 @@ export default function Footer() {
             <Link href="/blog">新着記事</Link>
           </li>
           <li className={styles.item}>
+            <Link href="/privacy">プライバシーポリシー</Link>
+          </li>
+          <li className={styles.item}>
             <Link href="/contact">お問い合わせ</Link>
           </li>
-          <li>
-            <Link href="/privacy">プライバシーポリシー</Link>
+          <li className={styles.item}>
+            <Link href="/feed.xml">RSSで購読する</Link>
           </li>
         </ul>
       </nav>
