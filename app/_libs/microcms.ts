@@ -13,6 +13,20 @@ export type Tag = {
   name: string;
 } & MicroCMSListContent;
 
+export type Main = {
+  fieldId: string;
+  editor: string;
+  product_name: string;
+  product_link: string;
+  amazon_link: string;
+  rakuten_link: string;
+  product_image: {
+    url: string;
+    width: number;
+    height: number;
+  };
+};
+
 export type News = {
   title: string;
   description: string;
@@ -20,6 +34,7 @@ export type News = {
   thumbnail?: MicroCMSImage;
   category: Category;
   tag: Tag[];
+  main: Main[];
 } & MicroCMSListContent;
 
 if (!process.env.MICROCMS_SERVICE_DOMAIN) {
