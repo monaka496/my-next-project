@@ -58,6 +58,11 @@
   background-color: var(--color-primary-light);
 }
 
+.link {
+  color: var(--color-primary);
+  text-decoration: underline;
+}
+
 @media (max-width: 640px) {
   .text {
     text-align: left;

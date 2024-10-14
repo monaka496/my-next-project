@@ -1,4 +1,5 @@
 import styles from "./page.module.css";
+import Link from "next/link";
 
 export default function Page() {
   return (
@@ -36,6 +37,12 @@ export default function Page() {
           placeholder="お問い合わせ内容"
           required
         ></textarea>
+        <p className={styles.text}>
+          <Link href="/privacy" className={styles.link}>
+            プライバシーポリシー
+          </Link>
+          にご同意の上、送信してください。
+        </p>
         <button className={styles.button} type="submit">
           送信する
         </button>
