@@ -265,7 +265,7 @@
 
   .thumbnail {
     height: auto;
-    margin: 0 -16px;
+    margin: -20px -16px 0px -16px;
     width: calc(100% + 32px);
   }
 
