@@ -63,6 +63,10 @@
   text-decoration: underline;
 }
 
+.wama {
+  display: none;
+}
+
 @media (max-width: 640px) {
   .text {
     text-align: left;

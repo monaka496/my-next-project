@@ -17,6 +17,9 @@ export default function Page() {
         action="https://ssgform.com/s/i767b5V39NXh"
         method="post"
       >
+        <div className={styles.wama}>
+          <input type="text" name="wana" />
+        </div>
         <input
           className={styles.input}
           type="text"
