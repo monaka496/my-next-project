@@ -30,7 +30,7 @@
   background-color: #fff;
 }
 
-@media (max-width: 640px) {
+@media (max-width: 820px) {
   .menu {
     padding: 0;
   }

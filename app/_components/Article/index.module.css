@@ -28,6 +28,15 @@
   padding: 10px 0 20px;
 }
 
+.promotion {
+  display: block;
+  color: #616269;
+  background-color: #f7f7fc;
+  font-size: 0.9rem;
+  border-radius: 5px;
+  padding: 0 15px;
+}
+
 .categoryLink {
   display: flex;
 }

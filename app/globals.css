@@ -97,7 +97,7 @@ table td {
   flex-grow: 1; /* メインコンテンツは残りのスペースを埋める */
 }
 
-@media (max-width: 768px) {
+@media (max-width: 820px) {
   .layout {
     flex-direction: column;
   }
