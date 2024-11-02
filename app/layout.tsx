@@ -1,6 +1,6 @@
 import "./globals.css";
 import { GoogleTagManager } from "@next/third-parties/google";
-
+import Script from "next/script";
 import type { Metadata } from "next";
 import Header from "./_components/Header";
 import Footer from "./_components/Footer";
@@ -43,6 +43,12 @@ export default async function RootLayout({
   return (
     <html lang="ja">
       <body>
+        <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6783574511450629"
+          crossOrigin="anonymous"
+          strategy="beforeInteractive"
+        ></Script>
         <Header />
         <div className="layout">
           <main className="content">{children}</main>
