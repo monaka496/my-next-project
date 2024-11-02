@@ -28,3 +28,11 @@
   background-color: transparent;
   border: 1px solid transparent;
 }
+
+.searchtext {
+  margin-top: 24px;
+  color: var(--color-text-sub);
+  display: block;
+  font-size: 14px;
+  font-weight: 700;
+}
