@@ -20,13 +20,20 @@ export const generateRssFeed = async (): Promise<string> => {
       ? new Date(post.publishedAt)
       : new Date();
 
+    const thumbnailUrl =
+      post.thumbnail?.url || `${baseUrl}/default-thumbnail.jpg`;
+
+    const descriptionWithImage = `
+      <img src="${thumbnailUrl}" alt="${post.title}" style="max-width:100%;height:auto;" />
+      <p>${post.description}</p>
+    `;
+
     feed.addItem({
       title: post.title,
-      description: post.description,
+      description: descriptionWithImage,
       date: publishDate,
       id: `${baseUrl}/blog/${post.id}`,
       link: `${baseUrl}/blog/${post.id}`,
-      image: post.thumbnail,
     });
   });
 
