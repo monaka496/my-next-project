@@ -26,6 +26,7 @@ export const generateRssFeed = async (): Promise<string> => {
       date: publishDate,
       id: `${baseUrl}/blog/${post.id}`,
       link: `${baseUrl}/blog/${post.id}`,
+      image: post.thumbnail,
     });
   });
 

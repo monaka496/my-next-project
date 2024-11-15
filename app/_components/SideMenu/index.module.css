@@ -14,7 +14,7 @@
   padding: 10px;
 }
 .tagContainer {
-  padding: 0 10px;
+  padding: 0 10px 10px 10px;
 }
 .taglist {
   display: inline-block;
