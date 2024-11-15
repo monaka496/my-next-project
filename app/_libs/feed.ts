@@ -20,22 +20,32 @@ export const generateRssFeed = async (): Promise<string> => {
       ? new Date(post.publishedAt)
       : new Date();
 
-    const thumbnailUrl =
-      post.thumbnail?.url || `${baseUrl}/default-thumbnail.jpg`;
-
-    const descriptionWithImage = `
-      <img src="${thumbnailUrl}" alt="${post.title}" style="max-width:100%;height:auto;" />
-      <p>${post.description}</p>
-    `;
-
     feed.addItem({
       title: post.title,
-      description: descriptionWithImage,
+      description: post.description,
       date: publishDate,
       id: `${baseUrl}/blog/${post.id}`,
       link: `${baseUrl}/blog/${post.id}`,
     });
   });
 
-  return feed.rss2();
+  let rssFeed = feed.rss2();
+
+  posts.forEach((post) => {
+    const thumbnailUrl =
+      post.thumbnail?.url || `${baseUrl}/default-thumbnail.jpg`;
+    const mediaTag = `<media:content url="${thumbnailUrl}" width="1920" height="1080" type="image"/>`;
+
+    rssFeed = rssFeed.replace(
+      `<link>${baseUrl}/blog/${post.id}</link>`,
+      `<link>${baseUrl}/blog/${post.id}</link>\n    ${mediaTag}`
+    );
+  });
+
+  rssFeed = rssFeed.replace(
+    '<rss version="2.0">',
+    '<rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/">'
+  );
+
+  return rssFeed;
 };
