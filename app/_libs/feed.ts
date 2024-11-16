@@ -26,30 +26,9 @@ export const generateRssFeed = async (): Promise<string> => {
       date: publishDate,
       id: `${baseUrl}/blog/${post.id}`,
       link: `${baseUrl}/blog/${post.id}`,
+      image: post.thumbnail,
     });
   });
 
-  // RSSフィードを文字列として取得
-  let rssFeed = feed.rss2();
-
-  // <media:content> タグを各 <item> に追加
-  posts.forEach((post) => {
-    const thumbnailUrl =
-      post.thumbnail?.url || `${baseUrl}/default-thumbnail.jpg`;
-    const mimeType = thumbnailUrl.endsWith(".png") ? "image/png" : "image/jpeg"; // MIMEタイプを推定
-    const mediaTag = `<media:content url="${thumbnailUrl}" width="1920" height="1080" type="${mimeType}"/>`;
-
-    rssFeed = rssFeed.replace(
-      `<link>${baseUrl}/blog/${post.id}</link>`,
-      `<link>${baseUrl}/blog/${post.id}</link>\n    ${mediaTag}`
-    );
-  });
-
-  // RSSに Media RSS 名前空間を追加
-  rssFeed = rssFeed.replace(
-    '<rss version="2.0">',
-    '<rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/" >'
-  );
-
-  return rssFeed;
+  return feed.rss2();
 };
