@@ -39,7 +39,7 @@
 }
 
 .titleText {
-  font-size: 18px;
+  font-size: 16px;
   transition: color 0.3s;
 }
 
@@ -51,6 +51,6 @@
 
 @media (max-width: 767px) {
   .recommendItems {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
   }
 }
