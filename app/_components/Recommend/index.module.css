@@ -59,7 +59,7 @@
   }
 
   .thumbnail {
-    width: 40%; /* 適宜調整。スマホでは大きすぎないように */
+    width: 40%;
     height: auto;
     flex-shrink: 0;
     border-radius: 0.5rem;
