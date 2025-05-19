@@ -52,8 +52,26 @@
   .recommendItems {
     grid-template-columns: repeat(1, 1fr);
   }
+  .recommendLink {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .thumbnail {
+    width: 40%; /* 適宜調整。スマホでは大きすぎないように */
+    height: auto;
+    flex-shrink: 0;
+    border-radius: 0.5rem;
+    object-fit: cover;
+  }
+
+  .titleContainer {
+    flex: 1;
+  }
+
   .titleText {
-    font-size: 1.2rem;
+    font-size: 1rem;
     transition: color 0.3s;
   }
 }

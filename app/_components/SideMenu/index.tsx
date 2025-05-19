@@ -14,7 +14,7 @@ export default function SideMenu({ categories, tags }: Props) {
     <>
       <SearchField />
       <h3 className={styles.sidetitle}>カテゴリ</h3>
-      <ul>
+      <ul className={styles.categoryContainer}>
         {categories.map((category) => (
           <li key={category.id} className={styles.categorylist}>
             <Link
