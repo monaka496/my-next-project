@@ -41,6 +41,15 @@ export default function Recommend({ contents, title }: Props) {
           ))}
         </div>
       </div>
+
+      {/* AdSenseの広告タグ */}
+      <ins
+        className="adsbygoogle"
+        style={{ display: "block" }}
+        data-ad-client="ca-pub-6783574511450629"
+        data-ad-slot="4324807365"
+        data-ad-format="autorelaxed"
+      ></ins>
     </section>
   );
 }
