@@ -49,8 +49,6 @@ export default function Recommend({ contents, title }: Props) {
         data-ad-client="ca-pub-6783574511450629"
         data-ad-slot="4324807365"
         data-ad-format="autorelaxed"
-        data-matched-content-rows-num="2"
-        data-matched-content-columns-num="3"
       ></ins>
     </section>
   );
