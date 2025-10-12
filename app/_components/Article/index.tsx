@@ -27,6 +27,8 @@ export default async function Article({ data }: Props) {
       switch (block.fieldId) {
         case "main_text":
           return block.editor;
+        case "html":
+          return block.html;
         default:
           return "";
       }
@@ -144,6 +146,14 @@ export default async function Article({ data }: Props) {
                   <div
                     key={`main_text-${index}`}
                     dangerouslySetInnerHTML={{ __html: block.editor }}
+                    className={styles.content}
+                  />
+                );
+              case "html":
+                return (
+                  <div
+                    key={`html-${index}`}
+                    dangerouslySetInnerHTML={{ __html: block.html }}
                     className={styles.content}
                   />
                 );

@@ -16,6 +16,7 @@ export type Tag = {
 export type Main = {
   fieldId: string;
   editor: string;
+  html: string;
   product_name: string;
   product_link: string;
   amazon_link: string;
