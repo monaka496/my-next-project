@@ -48,8 +48,6 @@ export default function Recommend({ contents, title }: Props) {
         style={{ display: "block" }}
         data-ad-client="ca-pub-6783574511450629"
         data-ad-slot="4324807365"
-        data-matched-content-rows-num="4,3"
-        data-matched-content-columns-num="1,3"
         data-ad-format="autorelaxed"
       ></ins>
     </section>
