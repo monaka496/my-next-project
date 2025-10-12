@@ -207,6 +207,7 @@
 .product_info {
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
 .product_name {
@@ -218,6 +219,7 @@
 .product_links {
   display: flex;
   gap: 12px;
+  width: 100%;
 }
 
 .product_links .link {
