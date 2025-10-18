@@ -4,13 +4,15 @@
   margin-top: 40px;
   padding: 24px;
 }
+
 .sharetitle {
   color: var(--color-text-sub);
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 700;
   padding-bottom: 16px;
   text-align: center;
 }
+
 .shareul {
   display: flex;
   justify-content: center;
@@ -19,46 +21,70 @@
   padding: 0;
   margin: 0;
 }
+
+/* 丸いボタンに変更 */
 .sharebutton {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  border-radius: 5px;
-  font-size: 14px;
-  font-weight: 700;
-  padding: 12px;
-  width: 200px;
-  text-align: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  transition: opacity 0.2s ease;
   text-decoration: none;
-  transition: background-color 0.3s ease;
-}
-.sharex {
-  border: 1px solid #0f1419;
-  color: #0f1419;
-}
-.sharefb {
-  border: 1px solid #1877f2;
-  color: #1877f2;
-}
-.sharehatena {
-  border: 1px solid #00a4de;
-  color: #00a4de;
-}
-.icon {
-  display: block;
 }
 
+.sharebutton:hover {
+  opacity: 0.8;
+}
+
+/* 各SNSカラー */
+.sharex {
+  background-color: #000; /* X */
+}
+
+.sharefb {
+  background-color: #1877f2; /* Facebook */
+}
+
+.sharehatena {
+  background-color: #00a4de; /* はてな */
+}
+
+.sharemstdn {
+  background-color: #6364ff; /* Mastodon */
+}
+
+.sharebsky {
+  background-color: #1185fe; /* Bluesky */
+}
+
+.sharenote {
+  background-color: #41c9b4; /* note */
+}
+
+/* アイコン */
+.icon {
+  width: 22px;
+  height: 22px;
+  display: block;
+  fill: #fff !important;
+}
+
+/* スマホ時の調整 */
 @media (max-width: 768px) {
   .shareul {
-    flex-direction: column;
-    gap: 0px;
+    flex-wrap: wrap;
+    gap: 12px;
   }
 
   .sharebutton {
-    font-size: 12px;
-    margin-bottom: 16px;
-    margin-left: 0;
-    width: 100%;
+    width: 40px;
+    height: 40px;
+  }
+
+  .icon {
+    width: 20px;
+    height: 20px;
   }
 }
