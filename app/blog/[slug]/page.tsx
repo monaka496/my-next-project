@@ -31,39 +31,13 @@ export async function generateMetadata({
     return {};
   }
 
-  // ✅ 各種URLを絶対パス化
-  const baseUrl = "https://monaka496.com";
-  const pageUrl = `${baseUrl}/blog/${data.id}`;
-  const imageUrl = data.thumbnail?.url?.startsWith("http")
-    ? data.thumbnail.url
-    : `${baseUrl}${data.thumbnail?.url || "/ogp.png"}`;
-
   return {
     title: data.title,
     description: data.description,
     openGraph: {
       title: data.title,
       description: data.description,
-      type: "article",
-      url: pageUrl,
-      siteName: "monaka",
-      images: [
-        {
-          url: imageUrl,
-          width: 1200,
-          height: 630,
-          alt: data.title,
-        },
-      ],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: data.title,
-      description: data.description,
-      images: [imageUrl],
-    },
-    alternates: {
-      canonical: pageUrl,
+      images: [data?.thumbnail?.url ?? ""],
     },
   };
 }
