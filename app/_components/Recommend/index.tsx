@@ -2,7 +2,6 @@ import type { News } from "@/app/_libs/microcms";
 import Image from "next/image";
 import Link from "next/link";
 import styles from "./index.module.css";
-import Date from "@/app/_components/Date";
 import { RECOMMEND_LIST_LIMIT } from "@/app/_constants/";
 
 type Props = {
@@ -34,7 +33,6 @@ export default function Recommend({ contents, title }: Props) {
                 />
                 <div className={styles.titleContainer}>
                   <h4 className={styles.titleText}>{item.title}</h4>
-                  {item.publishedAt && <Date date={item.publishedAt} />}
                 </div>
               </Link>
             </div>
