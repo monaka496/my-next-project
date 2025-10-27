@@ -10,7 +10,7 @@
 
 .recommendItems {
   display: grid;
-  gap: 1rem;
+  gap: 0.5rem;
 }
 
 .recommendItem {
@@ -69,7 +69,7 @@
   }
 
   .titleText {
-    font-size: 0.75rem;
+    font-size: 0.9rem;
     transition: color 0.3s;
   }
 }
