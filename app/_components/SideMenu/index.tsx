@@ -43,19 +43,19 @@ export default function SideMenu({ categories, tags }: Props) {
           ))}
       </ul>
       {/* AdSenseの広告タグ */}
-      <ins
+      {/* <ins
         className="adsbygoogle"
         style={{ display: "block" }}
         data-ad-client="ca-pub-6783574511450629"
         data-ad-slot="1648670387"
         data-ad-format="auto"
         data-full-width-responsive="true"
-      ></ins>
+      ></ins> */}
 
       {/* AdSenseのスクリプトを読み込む */}
-      <Script id="adsbygoogle-init" strategy="afterInteractive">
+      {/* <Script id="adsbygoogle-init" strategy="afterInteractive">
         {`(adsbygoogle = window.adsbygoogle || []).push({});`}
-      </Script>
+      </Script> */}
     </>
   );
 }
