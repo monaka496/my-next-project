@@ -3,7 +3,6 @@ import Image from "next/image";
 import Link from "next/link";
 import styles from "./index.module.css";
 import { RECOMMEND_LIST_LIMIT } from "@/app/_constants/";
-import Adsense from "@/app/_components/Adsense";
 
 type Props = {
   contents: News[];
@@ -42,7 +41,6 @@ export default function Recommend({ contents, title }: Props) {
       </div>
 
       {/* AdSenseの広告タグ */}
-      <Adsense />
     </section>
   );
 }

@@ -43,11 +43,11 @@ export default async function RootLayout({
   return (
     <html lang="ja">
       <head>
-        <script
+        {/* <script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6783574511450629"
           crossOrigin="anonymous"
-        ></script>
+        ></script> */}
       </head>
       <body>
         <Header />
