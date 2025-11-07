@@ -51,11 +51,6 @@ export default function SideMenu({ categories, tags }: Props) {
         data-ad-format="auto"
         data-full-width-responsive="true"
       ></ins> */}
-
-      {/* AdSenseのスクリプトを読み込む */}
-      {/* <Script id="adsbygoogle-init" strategy="afterInteractive">
-        {`(adsbygoogle = window.adsbygoogle || []).push({});`}
-      </Script> */}
     </>
   );
 }

@@ -42,13 +42,14 @@ export default async function RootLayout({
 
   return (
     <html lang="ja">
-      <body>
-        {/* <Script
+      <head>
+        <script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6783574511450629"
           crossOrigin="anonymous"
-          strategy="beforeInteractive"
-        ></Script> */}
+        ></script>
+      </head>
+      <body>
         <Header />
         <div className="layout">
           <main className="content">{children}</main>

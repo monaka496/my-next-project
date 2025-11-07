@@ -1,24 +1,32 @@
 "use client";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
-export default function AdSense() {
+export default function Adsense() {
+  const adRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     try {
-      // 広告を初期化
-      (window.adsbygoogle = window.adsbygoogle || []).push({});
+      if (typeof window !== "undefined" && adRef.current) {
+        const adsbygoogle = (window as any).adsbygoogle || [];
+        // 同じ広告枠への二重pushを防止
+        if (adRef.current.childNodes.length === 0) {
+          adsbygoogle.push({});
+        }
+      }
     } catch (e) {
       console.error("AdSense error:", e);
     }
   }, []);
 
   return (
-    <ins
-      className="adsbygoogle"
-      style={{ display: "block" }}
-      data-ad-client="ca-pub-6783574511450629"
-      data-ad-slot="4324807365"
-      data-ad-format="autorelaxed"
-      data-full-width-responsive="true"
-    ></ins>
+    <div ref={adRef}>
+      <ins
+        className="adsbygoogle"
+        style={{ display: "block" }}
+        data-ad-client="ca-pub-6783574511450629"
+        data-ad-slot="4324807365"
+        data-ad-format="autorelaxed"
+      ></ins>
+    </div>
   );
 }
