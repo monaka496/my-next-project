@@ -13,20 +13,18 @@ type Props = {
 };
 
 export default async function Page({ params }: Props) {
-  const current = parseInt(params.current, 10);
+  // ★ Next.js 16 対応：await params が必要
+  const { current: currentStr } = await params;
 
-  if (Number.isNaN(current) || current < 1) {
-    notFound();
-  }
+  const current = parseInt(currentStr, 10);
+  if (Number.isNaN(current) || current < 1) notFound();
 
   const { contents: news, totalCount } = await getNewsList({
     limit: NEWS_LIST_LIMIT,
     offset: NEWS_LIST_LIMIT * (current - 1),
   });
 
-  if (news.length === 0) {
-    notFound();
-  }
+  if (news.length === 0) notFound();
 
   return (
     <>

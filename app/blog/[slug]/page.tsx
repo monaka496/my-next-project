@@ -21,7 +21,9 @@ export async function generateMetadata({
   params,
   searchParams,
 }: Props): Promise<Metadata> {
-  const data = await getNewsDetail(params.slug, {
+  const { slug } = await params;
+
+  const data = await getNewsDetail(slug, {
     draftKey: searchParams.dk,
   }).catch(() => {
     notFound();
@@ -43,7 +45,9 @@ export async function generateMetadata({
 }
 
 export default async function Page({ params, searchParams }: Props) {
-  const data = await getNewsDetail(params.slug, {
+  const { slug } = await params;
+
+  const data = await getNewsDetail(slug, {
     draftKey: searchParams.dk,
   }).catch(() => {
     notFound();

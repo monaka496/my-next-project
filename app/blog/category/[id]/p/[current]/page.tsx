@@ -14,13 +14,13 @@ type Props = {
 };
 
 export default async function Page({ params }: Props) {
-  const current = parseInt(params.current as string, 10);
+  // ★ Next.js 16 の動作変更への対応ポイント
+  const { id, current: currentStr } = await params;
 
-  if (Number.isNaN(current) || current < 1) {
-    notFound();
-  }
+  const current = parseInt(currentStr, 10);
+  if (Number.isNaN(current) || current < 1) notFound();
 
-  const category = await getCategoryDetail(params.id).catch(notFound);
+  const category = await getCategoryDetail(id).catch(notFound);
 
   const { contents: news, totalCount } = await getNewsList({
     filters: `category[equals]${category.id}`,
@@ -28,9 +28,7 @@ export default async function Page({ params }: Props) {
     offset: NEWS_LIST_LIMIT * (current - 1),
   });
 
-  if (news.length === 0) {
-    notFound();
-  }
+  if (news.length === 0) notFound();
 
   return (
     <>

@@ -14,7 +14,10 @@ type Props = {
 };
 
 export default async function Page({ params }: Props) {
-  const category = await getCategoryDetail(params.id).catch(notFound);
+  const { id } = await params; // ← ★ここが重要（Next.js 15対応）
+
+  const category = await getCategoryDetail(id).catch(notFound);
+
   const { contents: news, totalCount } = await getNewsList({
     limit: NEWS_LIST_LIMIT,
     filters: `category[equals]${category.id}`,

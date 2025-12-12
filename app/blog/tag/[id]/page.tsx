@@ -14,7 +14,10 @@ type Props = {
 };
 
 export default async function Page({ params }: Props) {
-  const tag = await getTagDetail(params.id).catch(notFound);
+  const { id } = await params; // ← ★ Next.js 15 対応ポイント
+
+  const tag = await getTagDetail(id).catch(notFound);
+
   const { contents: news, totalCount } = await getNewsList({
     limit: NEWS_LIST_LIMIT,
     filters: `tag[contains]${tag.id}`,
