@@ -1,5 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // 🔹 Cloudflare Workers + OpenNext 必須
+  output: "standalone",
+
   images: {
     remotePatterns: [
       {
@@ -9,4 +12,5 @@ const nextConfig = {
     ],
   },
 };
+
 export default nextConfig;
