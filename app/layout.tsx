@@ -6,9 +6,6 @@ import Footer from "./_components/Footer";
 import SideMenu from "./_components/SideMenu";
 import { getAllCategoryList, getAllTagList } from "./_libs/microcms";
 
-export const dynamic = "force-dynamic";
-export const revalidate = 0;
-
 export const metadata: Metadata = {
   metadataBase: new URL("https://monaka496.com"),
   title: {
