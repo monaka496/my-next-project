@@ -7,21 +7,22 @@ import TableOfContents from "../ToC";
 import styles from "./index.module.css";
 import * as cheerio from "cheerio";
 import Recommend from "@/app/_components/Recommend";
-import { getBlogsByCategory } from "@/app/_libs/microcms";
 import Tag from "@/app/_components/Tag";
 import SNS from "../SNS";
 import Breadcrumb from "../Breadcrumb";
-import { notFound } from "next/navigation";
 
 type Props = {
   data: News;
+  relatedContents: News[]; // 親（Page）から関連記事を受け取るように追加
 };
 
-export default async function Article({ data }: Props) {
+// 「async」を削除しました
+export default function Article({ data, relatedContents }: Props) {
   if (!data || !data.main) {
     return <div>記事が見つかりませんでした。</div>;
   }
 
+  // 本文の結合処理
   const mainContent = data.main
     .map((block) => {
       switch (block.fieldId) {
@@ -35,7 +36,7 @@ export default async function Article({ data }: Props) {
     })
     .join("");
 
-  // Toc
+  // 目次（Toc）の生成
   const $ = cheerio.load(mainContent);
   const toc: { id: string; text: string }[] = [];
 
@@ -48,19 +49,10 @@ export default async function Article({ data }: Props) {
     if (!$(element).attr("id")) {
       $(element).attr("id", id);
     }
-
     toc.push({ id, text });
   });
 
-  // Recommend
-  const categoryId = data.category.id;
-
-  const { contents: relatedContents } = await getBlogsByCategory({
-    limit: 4, // 表示する関連記事の数
-    filters: `category[equals]${categoryId}[and]id[not_equals]${data.id}`,
-  });
-
-  // JSON-LDデータを構築
+  // JSON-LDデータの構築
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
@@ -91,7 +83,6 @@ export default async function Article({ data }: Props) {
 
   return (
     <>
-      {/* JSON-LDを表示 */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -204,10 +195,9 @@ export default async function Article({ data }: Props) {
           })}
         </div>
 
-        {/* SNSを表示 */}
         <SNS id={data.id} title={data.title} />
 
-        {/* 関連記事を表示 */}
+        {/* 関連記事を表示（Pageから渡されたデータを使用） */}
         <div>
           <h2 className={styles.recommendh2}>関連記事</h2>
           <Recommend contents={relatedContents} title={data.category.name} />

@@ -1,10 +1,17 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { getNewsDetail, getAllNewsList } from "@/app/_libs/microcms";
+import {
+  getNewsDetail,
+  getAllNewsList,
+  getBlogsByCategory,
+} from "@/app/_libs/microcms"; // getBlogsByCategory を追加
 import Article from "@/app/_components/Article";
 import ButtonLink from "@/app/_components/ButtonLink";
 import styles from "./page.module.css";
 
+/**
+ * ビルド時に生成するパスを定義
+ */
 export async function generateStaticParams() {
   const contents = await getAllNewsList();
 
@@ -19,6 +26,9 @@ type Props = {
   params: Promise<{ slug: string }>;
 };
 
+/**
+ * メタデータの生成
+ */
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
 
@@ -37,16 +47,27 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
+/**
+ * ページコンポーネント
+ */
 export default async function Page({ params }: Props) {
   const { slug } = await params;
 
+  // 記事詳細を取得
   const data = await getNewsDetail(slug).catch(() => notFound());
 
   if (!data) return notFound();
 
+  // ★ ここで関連記事を取得
+  const { contents: relatedContents } = await getBlogsByCategory({
+    limit: 4,
+    filters: `category[equals]${data.category.id}[and]id[not_equals]${data.id}`,
+  });
+
   return (
     <>
-      <Article data={data} />
+      {/* ★ relatedContents をプロップスとして渡す */}
+      <Article data={data} relatedContents={relatedContents} />
       <div className={styles.footer}>
         <ButtonLink href="/blog">新着記事一覧へ</ButtonLink>
       </div>
