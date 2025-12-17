@@ -9,29 +9,25 @@ export const revalidate = 60;
 export const runtime = "edge";
 
 type Props = {
-  params: {
-    slug: string;
-  };
-  searchParams: {
-    dk?: string;
-  };
+  params: { slug: string } | Promise<{ slug: string }>;
+  searchParams?: { dk?: string } | Promise<{ dk?: string }>;
 };
 
 export async function generateMetadata({
   params,
   searchParams,
 }: Props): Promise<Metadata> {
-  const { slug } = await params;
+  const resolvedParams = params instanceof Promise ? await params : params;
+  const resolvedSearchParams =
+    searchParams instanceof Promise ? await searchParams : searchParams;
+
+  const slug = resolvedParams.slug;
 
   const data = await getNewsDetail(slug, {
-    draftKey: searchParams.dk,
-  }).catch(() => {
-    notFound();
-  });
+    draftKey: resolvedSearchParams?.dk,
+  }).catch(() => notFound());
 
-  if (!data) {
-    return {};
-  }
+  if (!data) return {};
 
   return {
     title: data.title,
@@ -45,17 +41,17 @@ export async function generateMetadata({
 }
 
 export default async function Page({ params, searchParams }: Props) {
-  const { slug } = await params;
+  const resolvedParams = params instanceof Promise ? await params : params;
+  const resolvedSearchParams =
+    searchParams instanceof Promise ? await searchParams : searchParams;
+
+  const slug = resolvedParams.slug;
 
   const data = await getNewsDetail(slug, {
-    draftKey: searchParams.dk,
-  }).catch(() => {
-    notFound();
-  });
+    draftKey: resolvedSearchParams?.dk,
+  }).catch(() => notFound());
 
-  if (!data) {
-    return notFound();
-  }
+  if (!data) return notFound();
 
   return (
     <>

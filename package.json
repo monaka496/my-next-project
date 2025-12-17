@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "start": "next start",
     "build:open-next": "open-next build",
     "deploy": "open-next deploy",
     "lint": "next lint"
@@ -13,6 +14,7 @@
     "cheerio": "^1.0.0",
     "classnames": "^2.5.1",
     "dayjs": "^1.11.10",
+    "dotenv": "^17.2.3",
     "feed": "^4.2.2",
     "html-react-parser": "^5.2.6",
     "microcms-js-sdk": "^3.1.0",
