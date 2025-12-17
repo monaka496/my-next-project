@@ -5,6 +5,7 @@ import type {
   MicroCMSListContent,
 } from "microcms-js-sdk";
 
+// --- 型定義 ---
 export type Category = {
   name: string;
 } & MicroCMSListContent;
@@ -38,18 +39,28 @@ export type News = {
   main: Main[];
 } & MicroCMSListContent;
 
-if (!process.env.MICROCMS_SERVICE_DOMAIN) {
+// --- クライアントの作成 ---
+// サーバーサイド環境変数と、ブラウザ用環境変数(NEXT_PUBLIC_)の両方を確認します
+const serviceDomain =
+  process.env.MICROCMS_SERVICE_DOMAIN ||
+  process.env.NEXT_PUBLIC_MICROCMS_SERVICE_DOMAIN;
+const apiKey =
+  process.env.MICROCMS_API_KEY || process.env.NEXT_PUBLIC_MICROCMS_API_KEY;
+
+if (!serviceDomain) {
   throw new Error("MICROCMS_SERVICE_DOMAIN is required");
 }
-
-if (!process.env.MICROCMS_API_KEY) {
+if (!apiKey) {
   throw new Error("MICROCMS_API_KEY is required");
 }
 
-const client = createClient({
-  serviceDomain: process.env.MICROCMS_SERVICE_DOMAIN,
-  apiKey: process.env.MICROCMS_API_KEY,
+// clientは1つだけ宣言します
+export const client = createClient({
+  serviceDomain: serviceDomain,
+  apiKey: apiKey,
 });
+
+// --- 各種データ取得関数 ---
 
 export const getNewsList = async (queries?: MicroCMSQueries) => {
   const listData = await client.getList<News>({
@@ -69,6 +80,7 @@ export const getNewsDetail = async (
     queries,
     customRequestInit: {
       next: {
+        // SSGの場合はrevalidateの設定は無視されますが、開発時のために残しておきます
         revalidate: queries?.draftKey === undefined ? 60 : 0,
       },
     },
@@ -126,7 +138,7 @@ export const getBlogsByCategory = async ({
   return response;
 };
 
-// Tag
+// Tag関連
 export const getTagDetail = async (
   contentId: string,
   queries?: MicroCMSQueries

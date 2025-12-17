@@ -4,16 +4,27 @@ import NewsList from "@/app/_components/NewsList";
 import Pagenation from "@/app/_components/Pagenation";
 import { NEWS_LIST_LIMIT } from "@/app/_constants";
 
-export const runtime = "edge";
-
 type Props = {
-  params: {
+  params: Promise<{
     current: string;
-  };
+  }>;
 };
 
+export async function generateStaticParams() {
+  const { totalCount } = await getNewsList({ limit: 0 });
+  const maxPage = Math.ceil(totalCount / NEWS_LIST_LIMIT);
+
+  const paths = [];
+  for (let p = 1; p <= maxPage; p++) {
+    paths.push({
+      current: p.toString(),
+    });
+  }
+
+  return paths;
+}
+
 export default async function Page({ params }: Props) {
-  // ★ Next.js 16 対応：await params が必要
   const { current: currentStr } = await params;
 
   const current = parseInt(currentStr, 10);

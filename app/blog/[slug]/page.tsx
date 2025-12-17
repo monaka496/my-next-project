@@ -1,33 +1,32 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { getNewsDetail } from "@/app/_libs/microcms";
+import { getNewsDetail, getNewsList } from "@/app/_libs/microcms";
 import Article from "@/app/_components/Article";
 import ButtonLink from "@/app/_components/ButtonLink";
 import styles from "./page.module.css";
 
-export const revalidate = 60;
-export const runtime = "edge";
-export const dynamic = "force-dynamic";
-export const dynamicParams = true;
+/**
+ * ビルド時に生成するパスを定義
+ */
+export async function generateStaticParams() {
+  const response = await getNewsList(); // 必要に応じて { limit: 100 } 等を追加
+  return response.contents.map((post) => ({
+    slug: post.id,
+  }));
+}
 
 type Props = {
-  params: { slug: string } | Promise<{ slug: string }>;
-  searchParams?: { dk?: string } | Promise<{ dk?: string }>;
+  params: Promise<{ slug: string }>;
 };
 
-export async function generateMetadata({
-  params,
-  searchParams,
-}: Props): Promise<Metadata> {
-  const resolvedParams = params instanceof Promise ? await params : params;
-  const resolvedSearchParams =
-    searchParams instanceof Promise ? await searchParams : searchParams;
+/**
+ * メタデータの生成
+ */
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params;
 
-  const slug = resolvedParams.slug;
-
-  const data = await getNewsDetail(slug, {
-    draftKey: resolvedSearchParams?.dk,
-  }).catch(() => notFound());
+  // SSG時はURLパラメータが使えないため、draftKeyなしで取得
+  const data = await getNewsDetail(slug).catch(() => notFound());
 
   if (!data) return {};
 
@@ -42,16 +41,14 @@ export async function generateMetadata({
   };
 }
 
-export default async function Page({ params, searchParams }: Props) {
-  const resolvedParams = params instanceof Promise ? await params : params;
-  const resolvedSearchParams =
-    searchParams instanceof Promise ? await searchParams : searchParams;
+/**
+ * ページコンポーネント
+ */
+export default async function Page({ params }: Props) {
+  const { slug } = await params;
 
-  const slug = resolvedParams.slug;
-
-  const data = await getNewsDetail(slug, {
-    draftKey: resolvedSearchParams?.dk,
-  }).catch(() => notFound());
+  // SSG時はURLパラメータが使えないため、draftKeyなしで取得
+  const data = await getNewsDetail(slug).catch(() => notFound());
 
   if (!data) return notFound();
 

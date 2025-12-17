@@ -1,24 +1,50 @@
 import { notFound } from "next/navigation";
-import { getCategoryDetail, getNewsList } from "@/app/_libs/microcms";
+import {
+  getCategoryDetail,
+  getNewsList,
+  getAllCategoryList,
+} from "@/app/_libs/microcms";
 import NewsList from "@/app/_components/NewsList";
 import Pagenation from "@/app/_components/Pagenation";
 import { NEWS_LIST_LIMIT } from "@/app/_constants";
 
-export const runtime = "edge";
-
 type Props = {
-  params: {
+  params: Promise<{
     id: string;
     current: string;
-  };
+  }>;
 };
 
+export async function generateStaticParams() {
+  const categories = await getAllCategoryList();
+  const paths = [];
+
+  for (const category of categories) {
+    const { totalCount } = await getNewsList({
+      limit: 0,
+      filters: `category[equals]${category.id}`,
+    });
+
+    const maxPage = Math.ceil(totalCount / NEWS_LIST_LIMIT);
+
+    for (let p = 1; p <= maxPage; p++) {
+      paths.push({
+        id: category.id,
+        current: p.toString(),
+      });
+    }
+  }
+
+  return paths;
+}
+
 export default async function Page({ params }: Props) {
-  // ★ Next.js 16 の動作変更への対応ポイント
   const { id, current: currentStr } = await params;
 
   const current = parseInt(currentStr, 10);
-  if (Number.isNaN(current) || current < 1) notFound();
+  if (Number.isNaN(current) || current < 1) {
+    notFound();
+  }
 
   const category = await getCategoryDetail(id).catch(notFound);
 
@@ -28,7 +54,9 @@ export default async function Page({ params }: Props) {
     offset: NEWS_LIST_LIMIT * (current - 1),
   });
 
-  if (news.length === 0) notFound();
+  if (news.length === 0) {
+    notFound();
+  }
 
   return (
     <>
