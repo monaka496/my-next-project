@@ -7,6 +7,8 @@ import styles from "./page.module.css";
 
 export const revalidate = 60;
 export const runtime = "edge";
+export const dynamic = "force-dynamic";
+export const dynamicParams = true;
 
 type Props = {
   params: { slug: string } | Promise<{ slug: string }>;
