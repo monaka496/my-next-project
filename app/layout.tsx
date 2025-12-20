@@ -5,6 +5,7 @@ import Header from "./_components/Header";
 import Footer from "./_components/Footer";
 import SideMenu from "./_components/SideMenu";
 import { getAllCategoryList, getAllTagList } from "./_libs/microcms";
+import Adsense from "./_components/Adsense";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://monaka496.com"),
@@ -46,6 +47,7 @@ export default async function RootLayout({
             })(window,document,'script','dataLayer','GTM-PB3JSF3G');
           `}
         </Script>
+        <Adsense />
       </head>
 
       <body>

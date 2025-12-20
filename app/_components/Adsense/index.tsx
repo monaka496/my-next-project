@@ -1,32 +1,14 @@
 "use client";
-import { useEffect, useRef } from "react";
+
+import Script from "next/script";
 
 export default function Adsense() {
-  const adRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    try {
-      if (typeof window !== "undefined" && adRef.current) {
-        const adsbygoogle = (window as any).adsbygoogle || [];
-        // 同じ広告枠への二重pushを防止
-        if (adRef.current.childNodes.length === 0) {
-          adsbygoogle.push({});
-        }
-      }
-    } catch (e) {
-      console.error("AdSense error:", e);
-    }
-  }, []);
-
   return (
-    <div ref={adRef}>
-      {/* <ins
-        className="adsbygoogle"
-        style={{ display: "block" }}
-        data-ad-client="ca-pub-6783574511450629"
-        data-ad-slot="4324807365"
-        data-ad-format="autorelaxed"
-      ></ins> */}
-    </div>
+    <Script
+      async
+      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6783574511450629"
+      crossOrigin="anonymous"
+      strategy="afterInteractive" // ページの読み込み完了後に実行
+    />
   );
 }
