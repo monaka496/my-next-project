@@ -1,8 +1,11 @@
+"use client"; // useEffectを含むAdUnitを使うため追加
+
 import type { News } from "@/app/_libs/microcms";
 import Image from "next/image";
 import Link from "next/link";
 import styles from "./index.module.css";
 import { RECOMMEND_LIST_LIMIT } from "@/app/_constants/";
+import AdUnit from "../AdUnit"; // 1で作ったコンポーネント
 
 type Props = {
   contents: News[];
@@ -40,7 +43,10 @@ export default function Recommend({ contents, title }: Props) {
         </div>
       </div>
 
-      {/* AdSenseの広告タグ */}
+      {/* ここに関連記事広告を表示 */}
+      <div className={styles.adSection}>
+        <AdUnit />
+      </div>
     </section>
   );
 }
