@@ -1,6 +1,10 @@
 "use client";
 
 import { useEffect } from "react";
+// --- highlight.js の追加 ---
+import hljs from "highlight.js";
+import "highlight.js/styles/atom-one-dark.css"; // ダークモードで見栄えの良いテーマ
+// --------------------------
 import Link from "next/link";
 import Image from "next/image";
 import Script from "next/script";
@@ -31,20 +35,45 @@ export default function Article({ data, relatedContents }: Props) {
       })
       .join("") || "";
 
-  // 埋め込みコードに含まれる <script> タグを削除して React Error #418 を防ぐ
   const mainContent = rawContent.replace(
     /<script.*?\bplatform\.twitter\.com\/widgets\.js\b.*?>.*?<\/script>/gi,
     ""
   );
 
   useEffect(() => {
-    // ページ遷移時や初回表示時にツイートをレンダリングする
+    // A. コードハイライトの適用
+    hljs.highlightAll();
+
+    // B. コピーボタンの生成
+    const blocks = document.querySelectorAll("pre");
+    blocks.forEach((block) => {
+      // すでにボタンがある場合はスキップ
+      if (block.querySelector(`.${styles.copyButton}`)) return;
+
+      const button = document.createElement("button");
+      button.innerText = "Copy";
+      button.className = styles.copyButton;
+
+      button.addEventListener("click", async () => {
+        const code = block.querySelector("code");
+        if (code) {
+          await navigator.clipboard.writeText(code.innerText);
+          button.innerText = "Copied!";
+          setTimeout(() => (button.innerText = "Copy"), 2000);
+        }
+      });
+
+      block.style.position = "relative";
+      block.appendChild(button);
+    });
+
+    // C. X(Twitter)のレンダリング
     // @ts-ignore
     if (window.twttr && window.twttr.widgets) {
       // @ts-ignore
       window.twttr.widgets.load();
     }
-  }, [data]);
+  }, [data, mainContent]); // コンテンツが変わるたびに実行
 
   if (!data || !data.main) {
     return <div>記事が見つかりませんでした。</div>;
@@ -63,14 +92,12 @@ export default function Article({ data, relatedContents }: Props) {
 
   return (
     <>
-      {/* 2. X(Twitter)のスクリプトはここだけで管理する */}
       <Script
         src="https://platform.twitter.com/widgets.js"
         strategy="lazyOnload"
       />
 
       <main>
-        {/* ...（中略：サムネイルから日付表示まで） */}
         {data.thumbnail && (
           <Image
             src={data.thumbnail.url}
@@ -82,7 +109,7 @@ export default function Article({ data, relatedContents }: Props) {
         )}
         <Breadcrumb category={data.category} />
         <h1 className={styles.title}>{data.title}</h1>
-        {/* ...（meta情報など） */}
+
         <div className={styles.meta}>
           <Link
             href={`/blog/category/${data.category.id}`}
@@ -101,7 +128,6 @@ export default function Article({ data, relatedContents }: Props) {
         <div className={styles.content}>
           {data.main.map((block, index) => {
             if (block.fieldId === "main_text" || block.fieldId === "html") {
-              // ここでもスクリプトを除去したHTMLを流し込む
               const cleanHtml = (
                 block.fieldId === "main_text" ? block.editor : block.html
               ).replace(

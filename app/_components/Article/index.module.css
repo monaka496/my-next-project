@@ -94,13 +94,6 @@
   overflow-x: auto;
 }
 
-.content pre > code {
-  background-color: var(--color-bg-code);
-  display: block;
-  overflow-x: auto;
-  padding: 16px;
-}
-
 .content div[data-filename]::before {
   display: inline-block;
   background-color: var(--color-bg-sub);
@@ -253,6 +246,46 @@
 }
 .yahoo:hover {
   background-color: #5bcfee;
+}
+
+/* コードブロック全体の枠 */
+.content pre {
+  background-color: #1a1b26; /* テーマに合わせた背景色 */
+  padding: 0.5rem;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+  position: relative;
+}
+
+/* コピーボタンのスタイル */
+.copyButton {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.copyButton:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* コード内のフォント */
+.content code {
+  font-family: "Fira Code", "Cascadia Code", Consolas, monospace;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.content :global(.hljs) {
+  background: transparent !important; /* 背景色を透明に強制指定 */
+  color: #abb2bf; /* 文字色はそのまま維持 */
 }
 
 @media (max-width: 640px) {
