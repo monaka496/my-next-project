@@ -36,22 +36,25 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   if (!data) return {};
 
+  // 画像URLを取得（存在しない場合は undefined にする）
+  const imageUrl = data?.thumbnail?.url;
+
   return {
+    metadataBase: new URL("https://monaka496.com"),
     title: data.title,
     description: data.description,
     openGraph: {
       title: data.title,
       description: data.description,
-      images: [data?.thumbnail?.url ?? ""],
+      images: imageUrl ? [imageUrl] : [],
+      url: `https://monaka496.com/blog/${slug}`,
+      type: "article",
     },
     twitter: {
       card: "summary_large_image",
       title: data.title,
       description: data.description,
-      images: [data?.thumbnail?.url ?? ""],
-    },
-    other: {
-      "note:card": "summary_large_image",
+      images: imageUrl ? [imageUrl] : [],
     },
   };
 }
