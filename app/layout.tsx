@@ -36,7 +36,7 @@ export default async function RootLayout({
 
   return (
     <html lang="ja">
-      <head>
+      <body>
         {/* Google Tag Manager */}
         <Script id="gtm-head" strategy="afterInteractive">
           {`
@@ -47,11 +47,9 @@ export default async function RootLayout({
             })(window,document,'script','dataLayer','GTM-PB3JSF3G');
           `}
         </Script>
-        <Adsense />
-      </head>
 
-      <body>
-        {/* Google Tag Manager (noscript) */}
+        <Adsense />
+
         <noscript>
           <iframe
             src="https://www.googletagmanager.com/ns.html?id=GTM-PB3JSF3G"
