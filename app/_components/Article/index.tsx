@@ -1,5 +1,9 @@
+"use client"; // クライアントサイドでの処理（useEffect）が必要なため追加
+
+import { useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import Script from "next/script"; // 追加
 import type { News } from "@/app/_libs/microcms";
 import Date from "../Date";
 import Category from "../Category";
@@ -13,16 +17,24 @@ import Breadcrumb from "../Breadcrumb";
 
 type Props = {
   data: News;
-  relatedContents: News[]; // 親（Page）から関連記事を受け取るように追加
+  relatedContents: News[];
 };
 
-// 「async」を削除しました
 export default function Article({ data, relatedContents }: Props) {
+  // --- X(Twitter)の埋め込みを再描画する処理 ---
+  useEffect(() => {
+    // ページが表示された時に、埋め込みツイートをスキャンして表示させる
+    // @ts-ignore
+    if (window.twttr && window.twttr.widgets) {
+      // @ts-ignore
+      window.twttr.widgets.load();
+    }
+  }, [data]); // 記事データが変わるたびに実行
+
   if (!data || !data.main) {
     return <div>記事が見つかりませんでした。</div>;
   }
 
-  // 本文の結合処理
   const mainContent = data.main
     .map((block) => {
       switch (block.fieldId) {
@@ -36,7 +48,6 @@ export default function Article({ data, relatedContents }: Props) {
     })
     .join("");
 
-  // 目次（Toc）の生成
   const $ = cheerio.load(mainContent);
   const toc: { id: string; text: string }[] = [];
 
@@ -52,7 +63,6 @@ export default function Article({ data, relatedContents }: Props) {
     toc.push({ id, text });
   });
 
-  // JSON-LDデータの構築
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
@@ -83,6 +93,12 @@ export default function Article({ data, relatedContents }: Props) {
 
   return (
     <>
+      {/* X(Twitter)のウィジェットスクリプトを読み込み */}
+      <Script
+        src="https://platform.twitter.com/widgets.js"
+        strategy="afterInteractive"
+      />
+
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -125,10 +141,8 @@ export default function Article({ data, relatedContents }: Props) {
           <span className={styles.promotion}>このページはPRを含みます</span>
         </div>
 
-        {/* 目次を表示 */}
         <TableOfContents toc={toc} />
 
-        {/* コンテンツを表示 */}
         <div className={styles.content}>
           {data.main.map((block, index) => {
             switch (block.fieldId) {
@@ -197,7 +211,6 @@ export default function Article({ data, relatedContents }: Props) {
 
         <SNS id={data.id} title={data.title} />
 
-        {/* 関連記事を表示（Pageから渡されたデータを使用） */}
         <div>
           <h2 className={styles.recommendh2}>関連記事</h2>
           <Recommend contents={relatedContents} title={data.category.name} />

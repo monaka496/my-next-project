@@ -31,7 +31,7 @@ export default function AdUnit() {
   }, []);
 
   return (
-    <div style={{ marginTop: "20px", width: "100%", minHeight: "280px" }}>
+    <div style={{ marginTop: "10px", width: "100%", minHeight: "280px" }}>
       <ins
         className="adsbygoogle"
         style={{ display: "block" }}
