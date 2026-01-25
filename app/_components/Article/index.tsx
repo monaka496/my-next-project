@@ -18,6 +18,7 @@ import Recommend from "@/app/_components/Recommend";
 import Tag from "@/app/_components/Tag";
 import SNS from "../SNS";
 import Breadcrumb from "../Breadcrumb";
+import Profile from "@/app/_components/Profile";
 
 type Props = {
   data: News;
@@ -182,6 +183,12 @@ export default function Article({ data, relatedContents }: Props) {
         </div>
 
         <SNS id={data.id} title={data.title} />
+
+        {/* 記事の最後にプロフィールを表示 */}
+        <section>
+          <Profile />
+        </section>
+
         <div>
           <h2 className={styles.recommendh2}>関連記事</h2>
           <Recommend contents={relatedContents} title={data.category.name} />

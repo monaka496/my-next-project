@@ -1,0 +1,205 @@
+/* app/_components/index.module.css */
+
+.container {
+  display: flex;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.05);
+  border: 1px solid #f0f0f0;
+  margin-top: 40px;
+  overflow: hidden;
+  max-width: 100%;
+}
+
+/* 左側のプロフィールエリア */
+.leftSide {
+  flex: 0 0 200px; /* 幅を固定 */
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* 「この記事を書いた人」の吹き出し */
+.label {
+  position: relative;
+  background-color: #eee;
+  color: #666;
+  font-size: 0.75rem;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+/* 吹き出しの三角部分 */
+.label::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -6px;
+  border: 6px solid transparent;
+  border-top: 6px solid #eee;
+}
+
+.avatar {
+  border-radius: 50%;
+  border: 3px solid #eee;
+  margin-bottom: 12px;
+}
+
+.name {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #666; /* SANGOらしい青 */
+}
+
+.role {
+  margin: 4px 0 0;
+  font-size: 0.8rem;
+  color: #777;
+  font-weight: bold;
+}
+
+/* 右側の詳細エリア */
+.rightSide {
+  flex: 1;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.description {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: #555;
+  margin-bottom: 16px;
+}
+
+.snsLinks {
+  display: flex;
+  gap: 12px;
+}
+
+.twitterIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background-color: #1da1f2; /* Twitterブルー */
+  color: white;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 1.2rem;
+  transition: transform 0.2s;
+}
+
+.twitterIcon:hover {
+  transform: translateY(-2px);
+}
+
+/* app/_components/index.module.css */
+
+/* --- 前回のコードの続きに追加・修正 --- */
+
+.snsLinks {
+  display: flex;
+  gap: 8px; /* 間隔を少し詰める */
+  flex-wrap: wrap;
+}
+
+/* SNSアイコンの土台（背景を白、枠線をグレーに） */
+.snsIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.snsIcon:hover {
+  background-color: #f9f9f9;
+  transform: translateY(-2px);
+}
+
+/* SVGアイコン自体の色を黒（濃いグレー）にする */
+.icon {
+  /* SVGが元々「黒」や「色付き」の場合、
+     filterを使って色味をコントロールします。
+     以下は、要素を暗くして濃いグレーにする設定です。
+  */
+  filter: brightness(0) saturate(100%) invert(20%);
+  /* invert(20%) あたりで #333 くらいの濃いグレーになります */
+
+  display: block;
+  transition: opacity 0.2s;
+}
+
+.snsIcon:hover .icon {
+  filter: brightness(0) saturate(100%) invert(0%); /* ホバーで真っ黒にするなどの演出 */
+}
+
+@media (max-width: 600px) {
+  .snsLinks {
+    justify-content: center;
+    gap: 8px;
+    margin-top: 8px;
+  }
+}
+
+/* スマホ対応：余白をすっきりさせる */
+@media (max-width: 600px) {
+  .container {
+    flex-direction: column;
+    margin-top: 30px; /* 全体の位置を少し上げる */
+  }
+
+  .leftSide {
+    flex: none;
+    width: 100%;
+    padding: 20px 16px 12px; /* 下側の余白を減らす */
+    border-right: none;
+  }
+
+  .label {
+    margin-bottom: 12px; /* 吹き出しとアイコンの距離を縮める */
+    font-size: 0.7rem;
+  }
+
+  .avatar {
+    width: 60px !important; /* アイコンを少し小さく */
+    height: 60px !important;
+    margin-bottom: 8px;
+  }
+
+  .name {
+    font-size: 1rem;
+  }
+
+  .rightSide {
+    padding: 16px; /* 右側の余白も全体的に絞る */
+  }
+
+  .description {
+    font-size: 0.85rem; /* 文字を少し小さくして行間を調整 */
+    line-height: 1.6;
+    margin-bottom: 12px;
+  }
+
+  .snsLinks {
+    justify-content: center; /* スマホではSNSアイコンを中央に寄せると収まりが良い */
+    gap: 10px;
+  }
+
+  .twitterIcon {
+    width: 32px; /* アイコンも少し小さく */
+    height: 32px;
+  }
+}
