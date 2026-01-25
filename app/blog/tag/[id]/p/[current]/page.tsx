@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import { Metadata } from "next";
 import { getNewsList, getTagDetail, getAllTagList } from "@/app/_libs/microcms";
 import NewsList from "@/app/_components/NewsList";
 import { NEWS_LIST_LIMIT } from "@/app/_constants";
@@ -11,6 +12,26 @@ type Props = {
     current: string;
   }>;
 };
+
+// --- メタデータ生成関数を追加 ---
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { id, current: currentStr } = await params;
+  const current = parseInt(currentStr, 10);
+
+  const tag = await getTagDetail(id).catch(() => null);
+
+  if (!tag) {
+    return { title: "タグ | monaka" };
+  }
+
+  // 1ページ目以外はタイトルの末尾にページ番号を追加
+  const pageSuffix = current > 1 ? ` (${current}ページ目)` : "";
+
+  return {
+    title: `タグ「${tag.name}」の記事一覧${pageSuffix} | monaka`,
+    description: `タグ「${tag.name}」が付いた記事一覧の${current}ページ目です。`,
+  };
+}
 
 export async function generateStaticParams() {
   const tags = await getAllTagList();

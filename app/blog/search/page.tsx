@@ -1,21 +1,27 @@
 "use client";
 
-import { useEffect, useState, Suspense } from "react"; // Suspenseを追加
+import { useEffect, useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { getNewsList } from "@/app/_libs/microcms";
 import NewsList from "@/app/_components/NewsList";
 import { NEWS_LIST_LIMIT } from "@/app/_constants";
 
-// 検索ロジックを別コンポーネントに切り出す（Next.jsの仕様でuseSearchParamsを使う場合はSuspenseが必要）
 function SearchResults() {
   const searchParams = useSearchParams();
   const q = searchParams.get("q") || "";
 
-  // ✅ 型を指定してneverエラーを回避
   const [news, setNews] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    // --- タイトルの動的変更 ---
+    if (q) {
+      document.title = `「${q}」の検索結果 | monaka`;
+    } else {
+      document.title = `検索 | monaka`;
+    }
+    // ------------------------
+
     const fetchNews = async () => {
       setLoading(true);
       try {
@@ -48,10 +54,8 @@ function SearchResults() {
   );
 }
 
-// メインのPageコンポーネント
 export default function Page() {
   return (
-    // useSearchParamsを使うコンポーネントはSuspenseで囲むのがNext.jsのルールです
     <Suspense fallback={<p>読み込み中...</p>}>
       <SearchResults />
     </Suspense>

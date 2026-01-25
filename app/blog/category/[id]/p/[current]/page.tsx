@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import { Metadata } from "next";
 import {
   getCategoryDetail,
   getNewsList,
@@ -14,6 +15,25 @@ type Props = {
     current: string;
   }>;
 };
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { id, current: currentStr } = await params;
+  const current = parseInt(currentStr, 10);
+
+  const category = await getCategoryDetail(id).catch(() => null);
+
+  if (!category) {
+    return { title: "カテゴリー | monaka" };
+  }
+
+  // 1ページ目の時は表記なし、2ページ目以降は「(nページ目)」と表示
+  const pageSuffix = current > 1 ? ` (${current}ページ目)` : "";
+
+  return {
+    title: `${category.name}の記事一覧${pageSuffix} | monaka`,
+    description: `${category.name}に関する新着記事一覧の${current}ページ目です。`,
+  };
+}
 
 export async function generateStaticParams() {
   const categories = await getAllCategoryList();

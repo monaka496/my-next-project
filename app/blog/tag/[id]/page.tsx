@@ -1,6 +1,7 @@
 import { getTagDetail, getNewsList, getAllTagList } from "@/app/_libs/microcms"; // 綴りを修正
 import NewsList from "@/app/_components/NewsList";
 import { notFound } from "next/navigation";
+import { Metadata } from "next"; // Metadataをインポート
 import Tag from "@/app/_components/Tag";
 import { NEWS_LIST_LIMIT } from "@/app/_constants";
 import Pagenation from "@/app/_components/Pagenation";
@@ -8,8 +9,6 @@ import Pagenation from "@/app/_components/Pagenation";
 export async function generateStaticParams() {
   const response = await getAllTagList();
 
-  // response が直接配列の場合は、そのまま map を回します
-  // tag の型定義は MicroCMSContentId をインポートするか、直接 id: string を指定します
   return response.map((tag: { id: string }) => ({
     id: tag.id,
   }));
@@ -18,6 +17,21 @@ export async function generateStaticParams() {
 type Props = {
   params: Promise<{ id: string }>;
 };
+
+// --- メタデータ生成関数を追加 ---
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { id } = await params;
+  const tag = await getTagDetail(id).catch(() => null);
+
+  if (!tag) {
+    return { title: "タグ | monaka" };
+  }
+
+  return {
+    title: `タグ「${tag.name}」の記事一覧 | monaka`,
+    description: `タグ「${tag.name}」が付いた新着記事の一覧です。`,
+  };
+}
 
 export default async function Page({ params }: Props) {
   const { id } = await params;

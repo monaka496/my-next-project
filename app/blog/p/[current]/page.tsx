@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import { Metadata } from "next";
 import { getNewsList } from "@/app/_libs/microcms";
 import NewsList from "@/app/_components/NewsList";
 import Pagenation from "@/app/_components/Pagenation";
@@ -9,6 +10,20 @@ type Props = {
     current: string;
   }>;
 };
+
+// --- メタデータ生成関数を追加 ---
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { current: currentStr } = await params;
+  const current = parseInt(currentStr, 10);
+
+  // 1ページ目のときはシンプルに、2ページ目以降はページ番号を付与
+  const pageSuffix = current > 1 ? ` (${current}ページ目)` : "";
+
+  return {
+    title: `新着記事${pageSuffix} | monaka`,
+    description: `monakaの新着記事一覧、${current}ページ目です。最新のニュースやブログ記事をお届けします。`,
+  };
+}
 
 export async function generateStaticParams() {
   const { totalCount } = await getNewsList({ limit: 0 });

@@ -4,6 +4,7 @@ import {
   getAllCategoryList,
 } from "@/app/_libs/microcms";
 import { notFound } from "next/navigation";
+import { Metadata } from "next"; // Metadata型をインポート
 import NewsList from "@/app/_components/NewsList";
 import Pagenation from "@/app/_components/Pagenation";
 import Category from "@/app/_components/Category";
@@ -22,6 +23,24 @@ type Props = {
     id: string;
   }>;
 };
+
+// --- ここから追加 ---
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { id } = await params;
+  const category = await getCategoryDetail(id).catch(() => null);
+
+  if (!category) {
+    return {
+      title: "カテゴリ未設定 | monaka",
+    };
+  }
+
+  return {
+    title: `${category.name}の記事一覧 | monaka`,
+    description: `${category.name}に関する新着記事一覧です。`,
+  };
+}
+// --- ここまで追加 ---
 
 export default async function Page({ params }: Props) {
   const { id } = await params;
