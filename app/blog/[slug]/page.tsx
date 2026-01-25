@@ -4,7 +4,7 @@ import {
   getNewsDetail,
   getAllNewsList,
   getBlogsByCategory,
-} from "@/app/_libs/microcms";
+} from "@/app/_libs/microcms"; // getBlogsByCategory を追加
 import Article from "@/app/_components/Article";
 import ButtonLink from "@/app/_components/ButtonLink";
 import styles from "./page.module.css";
@@ -31,10 +31,12 @@ type Props = {
  */
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
+
   const data = await getNewsDetail(slug).catch(() => notFound());
 
   if (!data) return {};
 
+  // 画像URLを取得（存在しない場合は undefined にする）
   const imageUrl = data?.thumbnail?.url;
 
   return {
@@ -44,6 +46,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     openGraph: {
       title: data.title,
       description: data.description,
+      // 配列の中に空文字 "" が入るのを防ぐ
       images: imageUrl ? [imageUrl] : [],
       url: `https://monaka496.com/blog/${slug}`,
       type: "article",
@@ -54,7 +57,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: data.description,
       images: imageUrl ? [imageUrl] : [],
     },
-    // note:cardは標準OGPがあれば自動で判定されるため、一旦標準に合わせます
   };
 }
 
@@ -69,7 +71,7 @@ export default async function Page({ params }: Props) {
 
   if (!data) return notFound();
 
-  // 関連記事を取得
+  // ★ ここで関連記事を取得
   const { contents: relatedContents } = await getBlogsByCategory({
     limit: 4,
     filters: `category[equals]${data.category.id}[and]id[not_equals]${data.id}`,
@@ -77,6 +79,7 @@ export default async function Page({ params }: Props) {
 
   return (
     <>
+      {/* ★ relatedContents をプロップスとして渡す */}
       <Article data={data} relatedContents={relatedContents} />
       <div className={styles.footer}>
         <ButtonLink href="/blog">新着記事一覧へ</ButtonLink>
