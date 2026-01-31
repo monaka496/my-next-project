@@ -38,7 +38,7 @@ export default function Article({ data, relatedContents }: Props) {
 
   const mainContent = rawContent.replace(
     /<script.*?\bplatform\.twitter\.com\/widgets\.js\b.*?>.*?<\/script>/gi,
-    ""
+    "",
   );
 
   useEffect(() => {
@@ -133,7 +133,7 @@ export default function Article({ data, relatedContents }: Props) {
                 block.fieldId === "main_text" ? block.editor : block.html
               ).replace(
                 /<script.*?\bplatform\.twitter\.com\/widgets\.js\b.*?>.*?<\/script>/gi,
-                ""
+                "",
               );
 
               return (
@@ -172,6 +172,13 @@ export default function Article({ data, relatedContents }: Props) {
                         className={`${styles.link} ${styles.rakuten}`}
                       >
                         楽天市場
+                      </a>
+                      <a
+                        href={block.yahoo_link}
+                        target="_blank"
+                        className={`${styles.link} ${styles.yahoo}`}
+                      >
+                        Yahoo!ショッピング
                       </a>
                     </div>
                   </div>

@@ -22,6 +22,7 @@ export type Main = {
   product_link: string;
   amazon_link: string;
   rakuten_link: string;
+  yahoo_link: string;
   product_image: {
     url: string;
     width: number;
@@ -72,7 +73,7 @@ export const getNewsList = async (queries?: MicroCMSQueries) => {
 
 export const getNewsDetail = async (
   contentId: string,
-  queries?: MicroCMSQueries
+  queries?: MicroCMSQueries,
 ) => {
   const detailData = await client.getListDetail<News>({
     endpoint: "news",
@@ -91,7 +92,7 @@ export const getNewsDetail = async (
 
 export const getCategoryDetail = async (
   contentId: string,
-  queries?: MicroCMSQueries
+  queries?: MicroCMSQueries,
 ) => {
   const detailData = await client.getListDetail<Category>({
     endpoint: "category",
@@ -141,7 +142,7 @@ export const getBlogsByCategory = async ({
 // Tag関連
 export const getTagDetail = async (
   contentId: string,
-  queries?: MicroCMSQueries
+  queries?: MicroCMSQueries,
 ) => {
   const detailData = await client.getListDetail<Tag>({
     endpoint: "tag",
