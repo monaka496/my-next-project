@@ -1,10 +1,8 @@
 "use client";
 
 import { useEffect } from "react";
-// --- highlight.js の追加 ---
 import hljs from "highlight.js";
-import "highlight.js/styles/atom-one-dark.css"; // ダークモードで見栄えの良いテーマ
-// --------------------------
+import "highlight.js/styles/atom-one-dark.css";
 import Link from "next/link";
 import Image from "next/image";
 import Script from "next/script";
@@ -26,7 +24,6 @@ type Props = {
 };
 
 export default function Article({ data, relatedContents }: Props) {
-  // 1. 本文の結合とXスクリプトの除去
   const rawContent =
     data.main
       ?.map((block) => {
@@ -42,13 +39,10 @@ export default function Article({ data, relatedContents }: Props) {
   );
 
   useEffect(() => {
-    // A. コードハイライトの適用
     hljs.highlightAll();
 
-    // B. コピーボタンの生成
     const blocks = document.querySelectorAll("pre");
     blocks.forEach((block) => {
-      // すでにボタンがある場合はスキップ
       if (block.querySelector(`.${styles.copyButton}`)) return;
 
       const button = document.createElement("button");
@@ -68,13 +62,12 @@ export default function Article({ data, relatedContents }: Props) {
       block.appendChild(button);
     });
 
-    // C. X(Twitter)のレンダリング
     // @ts-ignore
     if (window.twttr && window.twttr.widgets) {
       // @ts-ignore
       window.twttr.widgets.load();
     }
-  }, [data, mainContent]); // コンテンツが変わるたびに実行
+  }, [data, mainContent]);
 
   if (!data || !data.main) {
     return <div>記事が見つかりませんでした。</div>;
@@ -91,11 +84,44 @@ export default function Article({ data, relatedContents }: Props) {
     toc.push({ id, text });
   });
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: data.title,
+    image: data.thumbnail?.url,
+    datePublished: data.publishedAt ?? data.createdAt,
+    dateModified: data.updatedAt,
+    author: {
+      "@type": "Person",
+      name: "もなか",
+      url: "https://monaka496.com",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "monaka",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://monaka496.com/logo.svg",
+      },
+    },
+    description: data.description,
+    articleBody: mainContent,
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `https://monaka496.com/blog/${data.id}`,
+    },
+  };
+
   return (
     <>
       <Script
         src="https://platform.twitter.com/widgets.js"
         strategy="lazyOnload"
+      />
+
+      <Script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
       <main>
@@ -118,6 +144,19 @@ export default function Article({ data, relatedContents }: Props) {
           >
             <Category category={data.category} />
           </Link>
+          {data.tag && data.tag.length > 0 && (
+            <div className={styles.tagLinks}>
+              {data.tag.map((tag) => (
+                <Link
+                  key={tag.id}
+                  href={`/blog/tag/${tag.id}`}
+                  className={styles.tagLink}
+                >
+                  <Tag tags={[tag]} />
+                </Link>
+              ))}
+            </div>
+          )}
         </div>
         <div className={styles.date}>
           <Date date={data.publishedAt ?? data.createdAt} />
@@ -191,7 +230,6 @@ export default function Article({ data, relatedContents }: Props) {
 
         <SNS id={data.id} title={data.title} />
 
-        {/* 記事の最後にプロフィールを表示 */}
         <section>
           <Profile />
         </section>
