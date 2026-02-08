@@ -378,3 +378,40 @@
   margin: 40px 0 20px;
   padding: 6px 10px;
 }
+
+/* カスタムclass */
+:global(.marker) {
+  font-weight: bold;
+  background: linear-gradient(
+    transparent 50%,
+    #fcff52 60%,
+    #fcff52 90%,
+    transparent 90%
+  );
+}
+
+:global(.point) {
+  display: flex;
+  align-items: flex-start;
+  padding: 1.3rem;
+  border-radius: 8px;
+  font-size: 16px;
+  margin: 1.5em 0;
+  line-height: 1.6;
+  background-color: #e8f3d6;
+  color: #2d3e10;
+}
+
+:global(.point)::before {
+  content: "";
+  flex-shrink: 0;
+  display: block;
+  width: 20px;
+  height: 20px;
+  margin-top: 2px;
+  margin-right: 14px;
+  background-image: url("/icon_point.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
