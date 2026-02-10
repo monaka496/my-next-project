@@ -5,3 +5,16 @@
   font-size: 1rem;
   color: #616269;
 }
+
+.container {
+  font-size: 0.9rem;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.dateItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}

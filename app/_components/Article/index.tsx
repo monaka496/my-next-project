@@ -138,12 +138,6 @@ export default function Article({ data, relatedContents }: Props) {
         <h1 className={styles.title}>{data.title}</h1>
 
         <div className={styles.meta}>
-          <Link
-            href={`/blog/category/${data.category.id}`}
-            className={styles.categoryLink}
-          >
-            <Category category={data.category} />
-          </Link>
           {data.tag && data.tag.length > 0 && (
             <div className={styles.tagLinks}>
               {data.tag.map((tag) => (
@@ -159,8 +153,11 @@ export default function Article({ data, relatedContents }: Props) {
           )}
         </div>
         <div className={styles.date}>
-          <Date date={data.publishedAt ?? data.createdAt} />
-          <span className={styles.promotion}>このページはPRを含みます</span>
+          <Date
+            date={data.publishedAt ?? data.createdAt}
+            updatedAt={data.updatedAt}
+          />
+          <span className={styles.promotion}>PRを含みます</span>
         </div>
 
         <TableOfContents toc={toc} />
