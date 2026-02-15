@@ -16,18 +16,18 @@ export default function Menu() {
       <nav className={cx(styles.nav, isOpen && styles.open)}>
         <ul className={styles.items}>
           <li>
-            <Link href="/blog" onClick={close}>
-              新着記事
+            <Link href="/tool/" onClick={close}>
+              便利ツール
             </Link>
           </li>
           <li>
-            <Link href="/privacy" onClick={close}>
+            <Link href="/privacy/" onClick={close}>
               プライバシーポリシー
             </Link>
           </li>
           <li>
             <Link
-              href="/contact"
+              href="/contact/"
               className={styles.feedbuttonsecondary}
               onClick={close}
             >

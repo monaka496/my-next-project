@@ -1,13 +1,9 @@
-// app/tool/_components/ToolNav/index.tsx
 import Link from "next/link";
 import styles from "./index.module.css";
-
-const ALL_TOOLS = [
-  { id: "urlencode", title: "URLエンコード" },
-  { id: "base64", title: "Base64変換" },
-];
+import { ALL_TOOLS } from "../../_constants/tools";
 
 export default function ToolNav({ currentId }: { currentId: string }) {
+  // 現在表示しているツール（currentId）を除外したリストを作成
   const otherTools = ALL_TOOLS.filter((tool) => tool.id !== currentId);
 
   return (
@@ -17,13 +13,13 @@ export default function ToolNav({ currentId }: { currentId: string }) {
         {otherTools.map((tool) => (
           <Link
             key={tool.id}
-            href={`/tool/${tool.id}`}
+            href={`/tool/${tool.id}/`} // 末尾スラッシュありに統一
             className={styles.footerLink}
           >
-            {tool.title} →
+            {tool.navTitle} →
           </Link>
         ))}
-        <Link href="/tool" className={styles.footerLinkSecondary}>
+        <Link href="/tool/" className={styles.footerLinkSecondary}>
           ツール一覧へ戻る
         </Link>
       </div>

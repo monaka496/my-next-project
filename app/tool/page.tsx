@@ -1,35 +1,17 @@
 import Link from "next/link";
 import styles from "./page.module.css";
 import Breadcrumbs from "./_components/Toolbreadcrumbs";
-
-const tools = [
-  {
-    id: "urlencode",
-    title: "URLエンコード・デコード",
-    description:
-      "日本語や記号をURLセーフな形式に変換、または元の文字列に復元します。",
-    icon: "🔗",
-    category: "Network",
-  },
-  {
-    id: "base64",
-    title: "Base64エンコード・デコード",
-    description:
-      "テキストをBase64形式に変換、または元の文字列に復元します。マルチバイト対応。",
-    icon: "📦",
-    category: "Utility",
-  },
-];
+import { ALL_TOOLS } from "./_constants/tools";
 
 export default function ToolListPage() {
-  // SEO用の構造化データ
+  // SEO用の構造化データ（定数から自動生成）
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "ItemList",
-    itemListElement: tools.map((tool, index) => ({
+    itemListElement: ALL_TOOLS.map((tool, index) => ({
       "@type": "ListItem",
       position: index + 1,
-      url: `https://monaka496.com/tool/${tool.id}`,
+      url: `https://monaka496.com/tool/${tool.id}/`,
       name: tool.title,
     })),
   };
@@ -54,8 +36,12 @@ export default function ToolListPage() {
       </header>
 
       <div className={styles.grid}>
-        {tools.map((tool) => (
-          <Link href={`/tool/${tool.id}`} key={tool.id} className={styles.card}>
+        {ALL_TOOLS.map((tool) => (
+          <Link
+            href={`/tool/${tool.id}/`}
+            key={tool.id}
+            className={styles.card}
+          >
             <div className={styles.cardContent}>
               <div className={styles.iconWrapper}>
                 <span className={styles.icon}>{tool.icon}</span>
