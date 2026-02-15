@@ -160,3 +160,18 @@ export const getAllTagList = async () => {
 
   return listData;
 };
+
+// types/tool.ts
+export type Tool = {
+  id: string; // コンテンツID（urlencode, base64など）
+  title: string;
+  description: string;
+  icon: string;
+  content: string;
+};
+
+// lib/microcms.ts (既存の取得関数に追記)
+export const getTools = async () => {
+  const data = await client.get({ endpoint: "tools" });
+  return data.contents as Tool[];
+};

@@ -1,0 +1,138 @@
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 30px 20px;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.title {
+  font-size: 2rem; /* 一覧ページの2.5remより少し小さくしてツールとしての実用性を重視 */
+  font-weight: 800;
+  margin-top: 20px; /* パンくずとの間に少し隙間を作る */
+  margin-bottom: 12px;
+  letter-spacing: -0.02em;
+}
+
+.subtitle {
+  color: #64748b;
+  font-size: 1.1rem;
+  line-height: 1.8;
+}
+
+.subtitle span {
+  font-weight: 700;
+  color: #10b981; /* 安心感を与えるグリーン */
+}
+
+/* グリッドレイアウト */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 24px;
+}
+
+/* カードデザイン */
+.card {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  position: relative;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  border-color: #563bff;
+  box-shadow: 0 12px 24px rgba(86, 59, 255, 0.08);
+}
+
+.cardContent {
+  padding: 32px;
+}
+
+.iconWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.icon {
+  font-size: 2rem;
+  background: #f1f5f9;
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+}
+
+.categoryTag {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #64748b;
+  background: #f1f5f9;
+  padding: 4px 10px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.toolTitle {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 12px;
+  transition: color 0.2s;
+}
+
+.card:hover .toolTitle {
+  color: #563bff;
+}
+
+.toolDescription {
+  font-size: 0.95rem;
+  color: #64748b;
+  line-height: 1.6;
+}
+
+/* カード下部のアクセント */
+.cardFooter {
+  padding: 20px 32px;
+  background: #f8fafc;
+  border-top: 1px solid #e2e8f0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #563bff;
+}
+
+.arrowIcon {
+  transition: transform 0.2s;
+}
+
+.card:hover .arrowIcon {
+  transform: translateX(4px);
+}
+
+/* レスポンシブ */
+@media (max-width: 640px) {
+  .title {
+    font-size: 2rem;
+  }
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

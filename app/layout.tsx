@@ -62,12 +62,7 @@ export default async function RootLayout({
         </noscript>
 
         <Header />
-        <div className="layout">
-          <main className="content">{children}</main>
-          <aside className="sidemenu">
-            <SideMenu categories={categories} tags={tags} />
-          </aside>
-        </div>
+        <main className="content">{children}</main>
         <Footer />
       </body>
     </html>

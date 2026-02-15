@@ -1,0 +1,71 @@
+.footerNav {
+  margin-top: 60px;
+  padding: 40px 20px;
+  background-color: #f8f9fa; /* 薄いグレーでセクションを区切る */
+  border-radius: 16px;
+  text-align: center;
+}
+
+.footerNavTitle {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 24px;
+  color: #333;
+}
+
+.footerLinkWrapper {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+/* 個別ツールのリンクボタン */
+.footerLink {
+  display: inline-block;
+  background-color: #fff;
+  color: #563bff;
+  border: 1px solid #563bff;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.footerLink:hover {
+  background-color: #563bff;
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(86, 59, 255, 0.2);
+}
+
+/* 「一覧に戻る」ボタン（少し控えめなデザイン） */
+.footerLinkSecondary {
+  display: inline-block;
+  background-color: transparent;
+  color: #666;
+  border: 1px solid #ddd;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.footerLinkSecondary:hover {
+  background-color: #eee;
+  color: #333;
+  border-color: #ccc;
+}
+
+@media (max-width: 600px) {
+  .footerNav {
+    padding: 30px 15px;
+  }
+
+  .footerLinkWrapper {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
