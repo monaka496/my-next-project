@@ -1,25 +1,65 @@
+.nav {
+  display: flex;
+  justify-content: center;
+  margin: 40px 0;
+}
+
 .container {
   display: flex;
-  justify-content: center;
   align-items: center;
-  padding: 24px;
-  margin-top: 24px;
+  gap: 8px; /* 要素間の余白 */
+  padding: 0;
+  list-style: none;
 }
 
-.list {
-  margin: 0 4px;
-}
-
-.item {
+.item,
+.arrow {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 36px;
-  height: 36px;
-  border-radius: var(--border-radius);
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  border: 1px solid #e5e5e5; /* サイトに合わせた薄いグレー */
+  background-color: #fff;
+  color: #333;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s ease;
 }
 
+/* ホバー時に「ボタン」であることを強調 */
+.item:hover,
+.arrow:hover {
+  border-color: #333;
+  background-color: #f9f9f9;
+}
+
+/* 現在のページのスタイル */
 .current {
-  color: var(--color-text-unpainted);
-  background-color: var(--color-button-primary);
+  background-color: #333; /* サイトのアクセントカラーに合わせる */
+  color: #fff;
+  border-color: #333;
+  pointer-events: none; /* 現在のページはクリック不可に */
+}
+
+.ellipsis {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  color: #999;
+}
+
+/* モバイル対応：指で押しやすいサイズ感を維持しつつコンパクトに */
+@media (max-width: 480px) {
+  .container {
+    gap: 4px;
+  }
+  .item,
+  .arrow {
+    width: 36px;
+    height: 36px;
+  }
 }

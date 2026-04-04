@@ -50,7 +50,7 @@
   background-color: #fff;
   width: 800px;
   margin: 0 auto;
-  padding: 24px 0px;
+  padding: 0px;
   border-radius: var(--border-radius);
 }
 
@@ -95,8 +95,8 @@
   }
 
   .news {
-    width: calc(100% - 32px);
-    padding: 16px 0px;
+    width: calc(100%);
+    padding: 0px;
   }
 
   .newsLink {
