@@ -220,42 +220,54 @@
   font-family: inherit !important; /* 等幅フォントにしない */
 }
 
-/* 生成後のパスワードスタイル */
-.passwordActive {
-  font-size: 1.5rem !important;
-  color: #563bff !important; /* メインカラー */
-  letter-spacing: 0.1em;
-  font-family: ui-monospace, monospace !important;
+/* UNIXタイムスタンプ用に以下を追加・調整 */
+.nowCard {
+  background: linear-gradient(135deg, #563bff 0%, #8b5cf6 100%);
+  color: white;
+  padding: 24px;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(86, 59, 255, 0.2);
+}
+
+.nowLabel {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  opacity: 0.9;
+  margin-bottom: 8px;
+}
+
+.nowValue {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 120px;
+  gap: 16px;
+  font-size: 2.2rem;
+  font-weight: 800;
+  font-family: ui-monospace, monospace;
 }
 
-.generateButton {
-  width: 100%;
-  margin-top: 24px;
-  padding: 16px;
-  background: #563bff;
-  color: #fff;
-  border: none;
-  border-radius: 12px;
-  font-size: 1.1rem;
-  font-weight: 700;
+.copyButtonSmall {
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-size: 0.75rem;
   cursor: pointer;
-  transition: all 0.2s;
-  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
 }
 
-.generateButton:hover {
-  background: #462ee5;
-  transform: translateY(-1px);
-}
-
-.optionsGrid {
-  background: #fff;
-  border: 1px solid #e2e8f0;
+.inputField {
+  width: 100%;
+  padding: 16px;
+  border: 2px solid #e2e8f0;
   border-radius: 12px;
-  padding: 24px;
-  margin-bottom: 24px;
+  font-size: 1.2rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.inputField:focus {
+  border-color: #563bff;
 }

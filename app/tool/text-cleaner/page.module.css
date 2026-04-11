@@ -220,42 +220,34 @@
   font-family: inherit !important; /* 等幅フォントにしない */
 }
 
-/* 生成後のパスワードスタイル */
-.passwordActive {
-  font-size: 1.5rem !important;
-  color: #563bff !important; /* メインカラー */
-  letter-spacing: 0.1em;
-  font-family: ui-monospace, monospace !important;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 120px;
-}
+/* パスワード生成ツールのスタイルをベースに以下を追加・調整 */
 
-.generateButton {
-  width: 100%;
-  margin-top: 24px;
-  padding: 16px;
-  background: #563bff;
-  color: #fff;
-  border: none;
-  border-radius: 12px;
-  font-size: 1.1rem;
-  font-weight: 700;
-  cursor: pointer;
-  transition: all 0.2s;
-  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
-}
-
-.generateButton:hover {
-  background: #462ee5;
-  transform: translateY(-1px);
+.resultTextarea {
+  height: 200px !important;
+  background-color: #f8fafc;
+  cursor: default;
+  font-family: ui-monospace, monospace;
 }
 
 .optionsGrid {
   background: #fff;
   border: 1px solid #e2e8f0;
   border-radius: 12px;
-  padding: 24px;
+  padding: 20px;
   margin-bottom: 24px;
+}
+
+.checkboxGroup {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.checkboxGroup label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useCallback } from "react";
 import styles from "./page.module.css";
 import Breadcrumbs from "../_components/Toolbreadcrumbs";
 import ToolNav from "../_components/ToolNav";
@@ -21,12 +21,11 @@ export default function PasswordGeneratorPage() {
 
   const generatePassword = useCallback(() => {
     let charset = "";
-    if (options.uppercase) charset += "ABCDEFGHJKLMNPQRSTUVWXYZ"; // 紛らわしいI, Oを除外
-    if (options.lowercase) charset += "abcdefghijkmnopqrstuvwxyz"; // 紛らわしいlを除外
-    if (options.numbers) charset += "23456789"; // 紛らわしい1, 0を除外
+    if (options.uppercase) charset += "ABCDEFGHJKLMNPQRSTUVWXYZ";
+    if (options.lowercase) charset += "abcdefghijkmnopqrstuvwxyz";
+    if (options.numbers) charset += "23456789";
     if (options.symbols) charset += "!@#$%^&*()_+~`|}{[]:;?><,./-=";
 
-    // 類似文字を除外しない場合、文字を追加
     if (!options.excludeSimilar) {
       if (options.uppercase) charset += "IO";
       if (options.lowercase) charset += "l";
@@ -48,11 +47,6 @@ export default function PasswordGeneratorPage() {
     setPassword(res);
   }, [length, options]);
 
-  // 初回表示時と設定変更時に自動生成
-  useEffect(() => {
-    generatePassword();
-  }, [generatePassword]);
-
   const copyToClipboard = () => {
     if (!password || password.startsWith("オプション")) return;
     navigator.clipboard.writeText(password);
@@ -65,23 +59,7 @@ export default function PasswordGeneratorPage() {
 
       <h1 className={styles.title}>{displayTitle}</h1>
 
-      <div className={styles.resultArea}>
-        <div className={styles.resultCard}>
-          <div className={styles.cardHeader}>
-            <span className={styles.cardTitle}>生成されたパスワード</span>
-            <button onClick={copyToClipboard} className={styles.copyButton}>
-              コピー
-            </button>
-          </div>
-          <div className={`${styles.resultBox} ${styles.passwordDisplay}`}>
-            {password}
-          </div>
-          <button onClick={generatePassword} className={styles.generateButton}>
-            再生成する
-          </button>
-        </div>
-      </div>
-
+      {/* ①設定エリアを上に移動 */}
       <div className={styles.section}>
         <h2 className={styles.label}>設定</h2>
         <div className={styles.optionsGrid}>
@@ -149,9 +127,33 @@ export default function PasswordGeneratorPage() {
                   })
                 }
               />{" "}
-              紛らわしい文字を除外 (i, l, 1, o, 0など)
+              紛らわしい文字を除外
             </label>
           </div>
+        </div>
+      </div>
+
+      {/* 結果表示エリア */}
+      <div className={styles.resultArea}>
+        <div className={styles.resultCard}>
+          <div className={styles.cardHeader}>
+            <span className={styles.cardTitle}>生成結果</span>
+            {password && !password.startsWith("オプション") && (
+              <button onClick={copyToClipboard} className={styles.copyButton}>
+                コピー
+              </button>
+            )}
+          </div>
+          {/* ②パスワードの有無でクラスを切り替え */}
+          <div
+            className={`${styles.resultBox} ${password ? styles.passwordActive : styles.passwordPlaceholder}`}
+          >
+            {password ||
+              "設定を確認して「パスワードを生成する」ボタンを押してください"}
+          </div>
+          <button onClick={generatePassword} className={styles.generateButton}>
+            パスワードを生成する
+          </button>
         </div>
       </div>
 
@@ -159,9 +161,9 @@ export default function PasswordGeneratorPage() {
         <hr className={styles.hr} />
         <h2>このツールのセキュリティについて</h2>
         <p>
-          本ツールはブラウザ標準の `crypto.getRandomValues()`
+          本ツールはブラウザ標準の <code>crypto.getRandomValues()</code>{" "}
           APIを使用しており、暗号学的に安全な乱数を生成しています。
-          生成処理はすべてお使いのデバイス上で行われ、ネットワークを介して外部に送信されることはありません。
+          処理はすべてローカルで行われ、外部送信はされません。
         </p>
       </div>
 

@@ -1,0 +1,176 @@
+/* --- ベーススタイル（お送りいただいた共通CSS） --- */
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 30px 20px;
+  color: #333;
+  line-height: 1.6;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-top: 20px;
+  margin-bottom: 12px;
+  letter-spacing: -0.02em;
+}
+
+.description {
+  font-size: 0.95rem;
+  color: #666;
+  margin-bottom: 32px;
+}
+
+.section {
+  margin-bottom: 32px;
+}
+
+.label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: #444;
+}
+
+.textarea {
+  width: 100%;
+  height: 160px;
+  padding: 16px;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-family: inherit;
+  resize: vertical;
+  transition: border-color 0.2s;
+  outline: none;
+}
+
+.textarea:focus {
+  border-color: #563bff;
+}
+
+.resultArea {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-bottom: 48px;
+}
+
+.resultCard {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.cardTitle {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.copyButton {
+  background: #fff;
+  color: #563bff;
+  border: 1px solid #563bff;
+  padding: 6px 16px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap; /* ボタンの文字が折り返さないように */
+}
+
+.copyButton:hover {
+  background: #563bff;
+  color: #fff;
+}
+
+/* --- パラメータグリッド（以前作成したものに微調整） --- */
+.paramGrid {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.paramHeader {
+  display: grid;
+  grid-template-columns: 80px 1fr; /* ラベル幅を固定 */
+  background: #f1f5f9;
+  padding: 14px 16px;
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: #475569;
+  border-bottom: 1px solid #e2e8f0;
+  text-transform: uppercase;
+}
+
+.paramRow {
+  display: flex; /* gridからflexに変更し、横並びを安定させる */
+  border-bottom: 1px solid #e2e8f0;
+  min-height: 54px;
+}
+
+.paramRow:last-child {
+  border-bottom: none;
+}
+
+.paramInput {
+  border: none;
+  background: transparent;
+  padding: 14px 16px;
+  font-size: 0.95rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  outline: none;
+  color: #1e293b;
+  width: 100%;
+}
+
+/* --- SEO解説セクション --- */
+.contentSection {
+  margin-top: 60px;
+  padding-top: 40px;
+  border-top: 1px solid #e2e8f0;
+}
+
+.contentSection h2 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 32px 0 16px;
+  color: #1a202c;
+}
+
+.contentSection p {
+  font-size: 0.95rem;
+  margin-bottom: 16px;
+  color: #4a5568;
+}
+
+.hr {
+  border: 0;
+  height: 1px;
+  background: #eee;
+  margin: 40px 0;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 640px) {
+  .title {
+    font-size: 1.5rem;
+  }
+  .resultCard {
+    padding: 16px;
+  }
+}

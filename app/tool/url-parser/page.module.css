@@ -220,42 +220,92 @@
   font-family: inherit !important; /* 等幅フォントにしない */
 }
 
-/* 生成後のパスワードスタイル */
-.passwordActive {
-  font-size: 1.5rem !important;
-  color: #563bff !important; /* メインカラー */
-  letter-spacing: 0.1em;
-  font-family: ui-monospace, monospace !important;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 120px;
-}
-
-.generateButton {
-  width: 100%;
-  margin-top: 24px;
-  padding: 16px;
-  background: #563bff;
-  color: #fff;
-  border: none;
-  border-radius: 12px;
-  font-size: 1.1rem;
-  font-weight: 700;
-  cursor: pointer;
-  transition: all 0.2s;
-  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
-}
-
-.generateButton:hover {
-  background: #462ee5;
-  transform: translateY(-1px);
-}
-
-.optionsGrid {
+/* URLクエリパラメータ解析用に以下を追加・調整 */
+.paramGrid {
   background: #fff;
   border: 1px solid #e2e8f0;
   border-radius: 12px;
-  padding: 24px;
+  overflow: hidden;
   margin-bottom: 24px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); /* 軽く浮かせて存在感を出す */
+}
+
+.paramHeader {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  background: #f1f5f9; /* 少し濃いめにしてヘッダー感を強調 */
+  padding: 14px 16px;
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: #475569;
+  border-bottom: 1px solid #e2e8f0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.paramRow {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  border-bottom: 1px solid #e2e8f0;
+  transition: background-color 0.2s;
+}
+
+.paramRow:last-child {
+  border-bottom: none;
+}
+
+/* マウスが乗った時に「行」として認識させる */
+.paramRow:hover {
+  background-color: #f8fafc;
+}
+
+/* --- URLクエリパラメータ解析用の調整 --- */
+
+.paramInput {
+  border: none;
+  /* 1. わずかに色をつけて「入力欄」であることを示す */
+  background: #fff;
+  padding: 14px 16px;
+  font-size: 0.9rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  outline: none;
+  border-right: 1px solid #e2e8f0;
+  transition: all 0.2s;
+  color: #334155;
+  /* 2. カーソルをテキスト入力用に明示 */
+  cursor: text;
+}
+
+/* 3. マウスを乗せた時に「ここが入力箇所だ」と一目でわかるようにする */
+.paramRow:hover .paramInput {
+  background-color: #fcfdff;
+}
+
+/* 4. さらに編集できることを強調するため、入力欄に薄い下線(ドット)を表示する手法 */
+.paramInput {
+  background-image: linear-gradient(
+    to right,
+    #e2e8f0 33%,
+    rgba(255, 255, 255, 0) 0%
+  );
+  background-position: bottom;
+  background-size: 3px 1px;
+  background-repeat: repeat-x;
+}
+
+/* 5. フォーカス（入力中）は下線を消して、既存の青枠強調を優先 */
+.paramInput:focus {
+  background-image: none;
+  background-color: #ffffff;
+  box-shadow: inset 0 0 0 2px #563bff;
+  color: #563bff;
+  z-index: 1;
+}
+
+/* スマホ対応の微調整 */
+@media (max-width: 640px) {
+  .paramHeader,
+  .paramRow {
+    grid-template-columns: 1fr 1fr; /* スマホでは幅を等分に */
+  }
 }

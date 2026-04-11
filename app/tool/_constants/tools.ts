@@ -44,4 +44,49 @@ export const ALL_TOOLS = [
     icon: "JSON", // または "✨"
     category: "Developer",
   },
+  {
+    id: "html-escape",
+    title: "HTMLエスケープ（特殊文字変換）",
+    navTitle: "HTMLエスケープ",
+    description:
+      "HTMLタグなどの特殊文字（<, >, &, \", '）をエスケープ文字に変換、または元に戻します。",
+    icon: "HTML",
+    category: "Developer",
+  },
+  {
+    id: "text-cleaner",
+    title: "重複削除ツール",
+    navTitle: "重複削除",
+    description:
+      "テキスト内の空行削除、重複行の統合、行頭・行末のスペース除去を一括で行います。",
+    icon: "🧹",
+    category: "Utility",
+  },
+  {
+    id: "unix-time",
+    title: "Unixタイムスタンプ相互変換",
+    navTitle: "Unixタイムスタンプ",
+    description:
+      "Unixタイムスタンプを日時に変換、または日時からタイムスタンプを生成します。ミリ秒・秒の両方に対応。",
+    icon: "🕒",
+    category: "Developer",
+  },
+  {
+    id: "url-parser",
+    title: "URLパラメータ解析・編集",
+    navTitle: "URLパラメータ解析",
+    description:
+      "複雑なURLを分解し、クエリパラメータを一覧表示・編集・再構築します。デバッグに最適です。",
+    icon: "🔍",
+    category: "Network",
+  },
+  {
+    id: "color-converter",
+    title: "カラーコード変換（HEX / RGB / HSL）",
+    navTitle: "カラーコード変換",
+    description:
+      "HEX、RGB、HSL形式のカラーコードを相互に変換します。透明度の調整やプレビュー確認も可能です。",
+    icon: "🎨",
+    category: "Design",
+  },
 ];
